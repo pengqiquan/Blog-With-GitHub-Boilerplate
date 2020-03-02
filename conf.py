@@ -3,7 +3,7 @@
 """
 
 # For Maverick
-site_prefix = "/HeapStack/"
+site_prefix = "/Blog-With-GitHub-Boilerplate/"
 source_dir = "../src/"
 build_dir = "../dist/"
 index_page_size = 10
