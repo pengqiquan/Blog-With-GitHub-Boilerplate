@@ -1,146 +1,1580 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog-With-GitHub-Boilerplate/</link><description>只坚持一种正义。我的正义。</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/Blog-With-GitHub-Boilerplate/logo.png</url><title>我的个人博客</title><link>/Blog-With-GitHub-Boilerplate/</link></image><language>zh-CN</language><lastBuildDate>Mon, 02 Mar 2020 02:50:32 +0806</lastBuildDate><pubDate>Mon, 02 Mar 2020 02:50:32 +0806</pubDate><item><title>我的第一篇文章</title><link>/Blog-With-GitHub-Boilerplate/archives/my-first-awesome-post/</link><description>&lt;p&gt;这是我的第一篇文章。文章使用 GitHub 管理，并通过 GitHub Actions 自动构建与发布！&lt;/p&gt;
-&lt;h3&gt;系统环境&lt;/h3&gt;
-&lt;p&gt;Centos 7 x64&lt;/p&gt;
-&lt;p&gt;BootStrap JDK**: 1.8.0_191&lt;/p&gt;
-&lt;p&gt;使用Jdk1.8 来编译OpenJdk1.8  (jdk1.7也行)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@centos7_02 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# uname -a&lt;/span&gt;
-Linux centos7_02 &lt;span class="m"&gt;3&lt;/span&gt;.10.0-1062.9.1.el7.x86_64 &lt;span class="c1"&gt;#1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;
-&lt;span class="o"&gt;[&lt;/span&gt;root@centos7_02 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# java -version&lt;/span&gt;
-openjdk version &lt;span class="s2"&gt;&amp;quot;1.8.0_232&amp;quot;&lt;/span&gt;
-OpenJDK Runtime Environment &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;1&lt;/span&gt;.8.0_232-b09&lt;span class="o"&gt;)&lt;/span&gt;
-OpenJDK &lt;span class="m"&gt;64&lt;/span&gt;-Bit Server VM &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;25&lt;/span&gt;.232-b09, mixed mode&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;准备条件&lt;/h3&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog-With-GitHub-Boilerplate/</link><description>只坚持一种正义。我的正义。</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/Blog-With-GitHub-Boilerplate/logo.png</url><title>我的个人博客</title><link>/Blog-With-GitHub-Boilerplate/</link></image><language>zh-CN</language><lastBuildDate>Mon, 02 Mar 2020 03:12:36 +0806</lastBuildDate><pubDate>Mon, 02 Mar 2020 03:12:36 +0806</pubDate><item><title>A interesting story</title><link>/Blog-With-GitHub-Boilerplate/archives/a-interesting-story/</link><description>&lt;p&gt;Mycat基于阿里开源的Cobar产品而研发。Mycat 是数据库中间件 。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href="http://www.mycat.io/"&gt;http://www.mycat.io/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;理论&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;什么是中间件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;中间件： 是一类连接软件组件和应用的计算机软件， 以便于软件各部件之间的沟通。
+例子： Tomcat， web中间件。
+数据库中间件： 连接java应用程序和数据库&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么要使用Myat&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;OpenJdk 8 的源码:openjdk-8u41-src-b04-14_jan_2020&lt;/li&gt;
-&lt;li&gt;ccache-3.2.4.tar.gz 的安装包&lt;/li&gt;
+&lt;li&gt;Java与数据库紧耦合。&lt;/li&gt;
+&lt;li&gt;高访问量高并发对数据库的压力。&lt;/li&gt;
+&lt;li&gt;读写请求数据不一致&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3&gt;编译前的准备&lt;/h3&gt;
-&lt;p&gt;开始前，先升级一下：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo yum update&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo yum upgrade&lt;/code&gt;&lt;/p&gt;
-&lt;h4&gt;1.安装源码仓库管理工具mercurial (可选，若是采用浏览器下载源码包再上传到服务器，则可以不安装)&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Mycat架构图&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 89.53900709219859" &gt;&lt;img width="505" height="282" src="/Blog-With-GitHub-Boilerplate/archives/assets/95f41052ab4b85c9a14e26714e9cf0d4.png" /&gt;&lt;figcaption&gt;arc&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;能干什么&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;读写分离 ：&lt;/p&gt;
+&lt;p&gt;Mycat作为中间件，Mycat把&lt;strong&gt;写&lt;/strong&gt;请求发送主主机master，&lt;strong&gt;读&lt;/strong&gt;请求发送个从主机slave。主主机和从主机之间进行Mysql的主从复制。从主机复制主主机。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数据分片 ：垂直拆分（分库） 、 水平拆分（分表） 、 垂直+水平拆分（分库分表）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;多数据源整合 ：支持各种数据库。&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 89.53900709219859" &gt;&lt;img width="505" height="282" src="/Blog-With-GitHub-Boilerplate/archives/assets/d9d74231c636c7d61d41c2718de2bca7.jpg" /&gt;&lt;figcaption&gt;mycat2&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Mycat 的原理中最重要的一个动词是“&lt;strong&gt;拦截&lt;/strong&gt;”，它拦截了用户发送过来的 SQL 语句，首先对 SQL
+语句做了一些特定的分析：如分片分析、路由分析、读写分离分析、缓存分析等，然后将此 SQL 发往后端的真实数据库， 并将返回的结果做适当的处理，最终再返回给用户。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;figure style="flex: 155.4307116104869" &gt;&lt;img width="830" height="267" src="/Blog-With-GitHub-Boilerplate/archives/assets/ccb5a35154cd88ce9287b882d3de7b26.png" /&gt;&lt;figcaption&gt;2020-02-14_152450&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3&gt;安装Mycat&lt;/h3&gt;
+&lt;p&gt;由于Mycat下载的即可使用&lt;/p&gt;
+&lt;p&gt;下载：Mycat-server-1.6.7.1-release-20190627191042-linux.tar.gz 安装包。地址：&lt;a href="http://dl.mycat.io/"&gt;http://dl.mycat.io/&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; wget http://dl.mycat.io/1.6.7.1/Mycat-server-1.6.7.1-release-20190627191042-linux.tar.gz
+ tar -xzvf  Mycat-server-1.6.7.1-release-20190627191042-linux.tar.gz -C /usr/local/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;目录结构&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;--bin 启动目录&lt;/p&gt;
+&lt;p&gt;--conf 配置目录存放配置文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  --server.xml：是Mycat服务器参数调整和用户授权的配置文件。
+
+  --schema.xml：是逻辑库定义和表以及分片定义的配置文件。
+
+  --rule.xml：  是分片规则的配置文件，分片规则的具体一些参数信息单独存放为文件，也在这个目录下，配置文件修改需要重启MyCAT。
+
+  --log4j.xml： 日志存放在logs/log中，每天一个文件，日志的配置是在conf/log4j.xml中，根据自己的需要可以调整输出级别为debug ，debug级别下，会输出更多的信息，方便排查问题。
+
+  --autopartition-long.txt,partition-hash-int.txt,sequence_conf.properties， sequence_db_conf.properties 分片相关的id分片规则配置文件
+
+  --lib     MyCAT自身的jar包或依赖的jar包的存放目录。
+  --logs        MyCAT日志的存放目录。日志存放在logs/log中，每天一个文件&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Mycat参考命令&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;linux&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./mycat start 启动
+
+./mycat stop 停止
+
+./mycat console 前台运行
+
+./mycat install 添加到系统自动启动（暂未实现）
+
+./mycat remove 取消随系统自动启动（暂未实现）
+
+./mycat restart 重启服务
+
+./mycat pause 暂停
+
+./mycat status 查看启动状态&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;若需要修改Mycat的Jvm配置参数，打开conf/wrapper.conf文件修改即可。Mycat的连接方式和Mysql连接方式一样。例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mysql -uroot -proot -P8066 -h127.0.0.1   &lt;span class="c1"&gt;#启动前需要修改Mycat的配置文件&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;配置图：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 90.45226130653266" &gt;&lt;img width="720" height="398" src="/Blog-With-GitHub-Boilerplate/archives/assets/fbe9f58a87ede32c80634e0576e2a603.png" /&gt;&lt;figcaption&gt;table&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Serverl.xml:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;!DOCTYPE mycat:server SYSTEM "server.dtd"&amp;gt;
+&amp;lt;mycat:server xmlns:mycat="http://io.mycat/"&amp;gt;
+    &amp;lt;system&amp;gt;
+    &amp;lt;property name="nonePasswordLogin"&amp;gt;0&amp;lt;/property&amp;gt; &amp;lt;!-- 0为需要密码登陆、1为不需要密码登陆 ,默认为0，设置为1则需要指定默认账户--&amp;gt;
+    &amp;lt;property name="useHandshakeV10"&amp;gt;1&amp;lt;/property&amp;gt;
+    &amp;lt;property name="useSqlStat"&amp;gt;0&amp;lt;/property&amp;gt;  &amp;lt;!-- 1为开启实时统计、0为关闭 --&amp;gt;
+    &amp;lt;property name="useGlobleTableCheck"&amp;gt;0&amp;lt;/property&amp;gt;  &amp;lt;!-- 1为开启全加班一致性检测、0为关闭 --&amp;gt;
+    &amp;lt;property name="sequnceHandlerType"&amp;gt;2&amp;lt;/property&amp;gt;
+    &amp;lt;!--必须带有MYCATSEQ_或者 mycatseq_进入序列匹配流程 注意MYCATSEQ_有空格的情况--&amp;gt;
+    &amp;lt;property name="sequnceHandlerPattern"&amp;gt;(?:(\s*next\s+value\s+for\s*MYCATSEQ_(\w+))(,|\)|\s)*)+&amp;lt;/property&amp;gt;
+    &amp;lt;property name="subqueryRelationshipCheck"&amp;gt;false&amp;lt;/property&amp;gt; &amp;lt;!-- 子查询中存在关联查询的情况下,检查关联字段中是否有分片字段 .默认 false --&amp;gt;
+  &amp;lt;!--&amp;lt;property name="useCompression"&amp;gt;1&amp;lt;/property&amp;gt;--&amp;gt; &amp;lt;!--1为开启mysql压缩协议--&amp;gt;
+  &amp;lt;!-- &amp;lt;property name="fakeMySQLVersion"&amp;gt;5.6.20&amp;lt;/property&amp;gt;--&amp;gt; &amp;lt;!--设置模拟的MySQL版本号--&amp;gt;
+  &amp;lt;!-- &amp;lt;property name="processorBufferChunk"&amp;gt;40960&amp;lt;/property&amp;gt; --&amp;gt;
+  &amp;lt;!-- &amp;lt;property name="processors"&amp;gt;1&amp;lt;/property&amp;gt; 
+      &amp;lt;property name="processorExecutor"&amp;gt;32&amp;lt;/property&amp;gt; 
+  --&amp;gt;
+   &amp;lt;!--默认为type 0: DirectByteBufferPool | type 1 ByteBufferArena | type 2 NettyBufferPool --&amp;gt;
+    &amp;lt;property name="processorBufferPoolType"&amp;gt;0&amp;lt;/property&amp;gt;
+        &amp;lt;!--默认是65535 64K 用于sql解析时最大文本长度 --&amp;gt;
+        &amp;lt;!--&amp;lt;property name="maxStringLiteralLength"&amp;gt;65535&amp;lt;/property&amp;gt;--&amp;gt;
+        &amp;lt;!--&amp;lt;property name="sequnceHandlerType"&amp;gt;0&amp;lt;/property&amp;gt;--&amp;gt;
+        &amp;lt;!--&amp;lt;property name="backSocketNoDelay"&amp;gt;1&amp;lt;/property&amp;gt;--&amp;gt;
+        &amp;lt;!--&amp;lt;property name="frontSocketNoDelay"&amp;gt;1&amp;lt;/property&amp;gt;--&amp;gt;
+        &amp;lt;!--&amp;lt;property name="processorExecutor"&amp;gt;16&amp;lt;/property&amp;gt;--&amp;gt;
+        &amp;lt;!--
+        &amp;lt;property name="serverPort"&amp;gt;8066&amp;lt;/property&amp;gt; &amp;lt;property name="managerPort"&amp;gt;9066&amp;lt;/property&amp;gt; 
+        &amp;lt;property name="idleTimeout"&amp;gt;300000&amp;lt;/property&amp;gt; &amp;lt;property name="bindIp"&amp;gt;0.0.0.0&amp;lt;/property&amp;gt; 
+        &amp;lt;property name="frontWriteQueueSize"&amp;gt;4096&amp;lt;/property&amp;gt; &amp;lt;property name="processors"&amp;gt;32&amp;lt;/property&amp;gt; --&amp;gt;
+        &amp;lt;!--分布式事务开关，0为不过滤分布式事务，1为过滤分布式事务（如果分布式事务内只涉及全局表，则不过滤），2为不过滤分布式事务,但是记录分布式事务日志--&amp;gt;
+        &amp;lt;property name="handleDistributedTransactions"&amp;gt;0&amp;lt;/property&amp;gt;
+        &amp;lt;!--  off heap for merge/order/group/limit      1开启   0关闭   --&amp;gt;
+        &amp;lt;property name="useOffHeapForMerge"&amp;gt;0&amp;lt;/property&amp;gt;
+
+        &amp;lt;!--   单位为m    --&amp;gt;
+        &amp;lt;property name="memoryPageSize"&amp;gt;64k&amp;lt;/property&amp;gt;
+
+        &amp;lt;!--    单位为k    --&amp;gt;
+        &amp;lt;property name="spillsFileBufferSize"&amp;gt;1k&amp;lt;/property&amp;gt;
+
+        &amp;lt;property name="useStreamOutput"&amp;gt;0&amp;lt;/property&amp;gt;
+
+        &amp;lt;!--    单位为m   --&amp;gt;
+        &amp;lt;property name="systemReserveMemorySize"&amp;gt;384m&amp;lt;/property&amp;gt;
+
+        &amp;lt;!--是否采用zookeeper协调切换  --&amp;gt;
+        &amp;lt;property name="useZKSwitch"&amp;gt;false&amp;lt;/property&amp;gt;
+
+        &amp;lt;!-- XA Recovery Log日志路径 --&amp;gt;
+        &amp;lt;!--&amp;lt;property name="XARecoveryLogBaseDir"&amp;gt;./&amp;lt;/property&amp;gt;--&amp;gt;
+
+        &amp;lt;!-- XA Recovery Log日志名称 --&amp;gt;
+        &amp;lt;!--&amp;lt;property name="XARecoveryLogBaseName"&amp;gt;tmlog&amp;lt;/property&amp;gt;--&amp;gt;
+        &amp;lt;!--如果为 true的话 严格遵守隔离级别,不会在仅仅只有select语句的时候在事务中切换连接--&amp;gt;
+        &amp;lt;property name="strictTxIsolation"&amp;gt;false&amp;lt;/property&amp;gt;
+
+        &amp;lt;property name="useZKSwitch"&amp;gt;true&amp;lt;/property&amp;gt;
+
+    &amp;lt;/system&amp;gt;
+
+    &amp;lt;!-- 全局SQL防火墙设置 --&amp;gt;
+    &amp;lt;!--白名单可以使用通配符%或着*--&amp;gt;
+    &amp;lt;!--例如&amp;lt;host host="127.0.0.*" user="root"/&amp;gt;--&amp;gt;
+    &amp;lt;!--例如&amp;lt;host host="127.0.*" user="root"/&amp;gt;--&amp;gt;
+    &amp;lt;!--例如&amp;lt;host host="127.*" user="root"/&amp;gt;--&amp;gt;
+    &amp;lt;!--例如&amp;lt;host host="1*7.*" user="root"/&amp;gt;--&amp;gt;
+    &amp;lt;!--这些配置情况下对于127.0.0.1都能以root账户登录--&amp;gt;
+    &amp;lt;!--
+    &amp;lt;firewall&amp;gt;
+       &amp;lt;whitehost&amp;gt;
+          &amp;lt;host host="1*7.0.0.*" user="root"/&amp;gt;
+       &amp;lt;/whitehost&amp;gt;
+       &amp;lt;blacklist check="false"&amp;gt;
+       &amp;lt;/blacklist&amp;gt;
+    &amp;lt;/firewall&amp;gt;
+    --&amp;gt;
+
+    &amp;lt;user name="root" defaultAccount="true"&amp;gt;
+        &amp;lt;property name="password"&amp;gt;123456&amp;lt;/property&amp;gt;
+        &amp;lt;property name="schemas"&amp;gt;TESTDB&amp;lt;/property&amp;gt;
+
+        &amp;lt;!-- 表级 DML 权限设置 --&amp;gt;
+        &amp;lt;!--        
+        &amp;lt;privileges check="false"&amp;gt;
+            &amp;lt;schema name="TESTDB" dml="0110" &amp;gt;
+                &amp;lt;table name="tb01" dml="0000"&amp;gt;&amp;lt;/table&amp;gt;
+                &amp;lt;table name="tb02" dml="1111"&amp;gt;&amp;lt;/table&amp;gt;
+            &amp;lt;/schema&amp;gt;
+        &amp;lt;/privileges&amp;gt;       
+         --&amp;gt;
+    &amp;lt;/user&amp;gt;
+
+    &amp;lt;user name="user"&amp;gt;
+        &amp;lt;property name="password"&amp;gt;user&amp;lt;/property&amp;gt;
+        &amp;lt;property name="schemas"&amp;gt;TESTDB&amp;lt;/property&amp;gt;
+        &amp;lt;property name="readOnly"&amp;gt;true&amp;lt;/property&amp;gt;
+    &amp;lt;/user&amp;gt;
+
+&amp;lt;/mycat:server&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上面主要是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;system 参数是所有的mycat参数配置，&lt;/li&gt;
+&lt;li&gt;user 是用户参数。&lt;/li&gt;
+&lt;li&gt;firewall：用来定义防火墙； firewall 下 whitehost 标签用来定义 IP 白名单 ， blacklist 用来定义
+SQL 黑名单。 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;schema.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;?xml &lt;span class="nv"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;?&amp;gt;
+&amp;lt;!DOCTYPE mycat:schema SYSTEM &lt;span class="s2"&gt;&amp;quot;schema.dtd&amp;quot;&lt;/span&gt;&amp;gt;
+&amp;lt;mycat:schema xmlns:mycat&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://io.mycat/&amp;quot;&lt;/span&gt;&amp;gt;
+
+    &amp;lt;schema &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;TESTDB&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;checkSQLschema&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;false&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;sqlMaxLimit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;100&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;travelrecord&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1,dn2,dn3&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;auto-sharding-long&amp;quot;&lt;/span&gt; /&amp;gt;
+        &amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;company&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;primaryKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ID&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;global&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1,dn2,dn3&amp;quot;&lt;/span&gt; /&amp;gt;
+        &amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;goods&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;primaryKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ID&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;global&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1,dn2&amp;quot;&lt;/span&gt; /&amp;gt;
+        &amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hotnews&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;primaryKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ID&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;autoIncrement&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1,dn2,dn3&amp;quot;&lt;/span&gt;
+               &lt;span class="nv"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mod-long&amp;quot;&lt;/span&gt; /&amp;gt;
+        &amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;employee&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;primaryKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ID&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1,dn2&amp;quot;&lt;/span&gt;
+               &lt;span class="nv"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sharding-by-intfile&amp;quot;&lt;/span&gt; /&amp;gt;
+        &amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;customer&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;primaryKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ID&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1,dn2&amp;quot;&lt;/span&gt;
+               &lt;span class="nv"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sharding-by-intfile&amp;quot;&lt;/span&gt;&amp;gt;
+            &amp;lt;childTable &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;orders&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;primaryKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ID&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;joinKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;customer_id&amp;quot;&lt;/span&gt;
+                        &lt;span class="nv"&gt;parentKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&amp;gt;
+                &amp;lt;childTable &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;order_items&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;joinKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;order_id&amp;quot;&lt;/span&gt;
+                            &lt;span class="nv"&gt;parentKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt; /&amp;gt;
+            &amp;lt;/childTable&amp;gt;
+            &amp;lt;childTable &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;customer_addr&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;primaryKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ID&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;joinKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;customer_id&amp;quot;&lt;/span&gt;
+                        &lt;span class="nv"&gt;parentKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt; /&amp;gt;
+        &amp;lt;/table&amp;gt;
+    &amp;lt;/schema&amp;gt;
+    &amp;lt;dataNode &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataHost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;localhost1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;database&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;db1&amp;quot;&lt;/span&gt; /&amp;gt;
+    &amp;lt;dataNode &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn2&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataHost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;localhost1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;database&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;db2&amp;quot;&lt;/span&gt; /&amp;gt;
+    &amp;lt;dataNode &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn3&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataHost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;localhost1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;database&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;db3&amp;quot;&lt;/span&gt; /&amp;gt;
+    &amp;lt;dataHost &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;localhost1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;maxCon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1000&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;minCon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;10&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;balance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;writeType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dbType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mysql&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dbDriver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;native&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;switchType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;slaveThreshold&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;100&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;heartbeat&amp;gt;select user&lt;span class="o"&gt;()&lt;/span&gt;&amp;lt;/heartbeat&amp;gt;
+        &amp;lt;writeHost &lt;span class="nv"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hostM1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;localhost:3306&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;root&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;123456&amp;quot;&lt;/span&gt;&amp;gt;
+            &amp;lt;readHost &lt;span class="nv"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hostS2&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;192.168.1.200:3306&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;root&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;xxx&amp;quot;&lt;/span&gt; /&amp;gt;
+        &amp;lt;/writeHost&amp;gt;
+        &amp;lt;writeHost &lt;span class="nv"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hostS1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;localhost:3316&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;root&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;123456&amp;quot;&lt;/span&gt; /&amp;gt;
+    &amp;lt;/dataHost&amp;gt;
+
+&amp;lt;/mycat:schema&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面&lt;strong&gt;schema&lt;/strong&gt; 是实际逻辑库的配置，多个&lt;strong&gt;schema&lt;/strong&gt;代表多个逻辑库。&lt;strong&gt;dataNode&lt;/strong&gt;是逻辑库对应的分片，如果配置多个分片只需要多个&lt;strong&gt;dataNode&lt;/strong&gt;即可。&lt;strong&gt;dataHost&lt;/strong&gt;是实际的物理库配置地址，可以配置多主主从等其他配置，多个dataHost代表分片对应的物理库地址，&lt;strong&gt;writeHost&lt;/strong&gt;、&lt;strong&gt;readHost&lt;/strong&gt;代表该分片是否配置多写，主从，读写分离等高级特性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;rule.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;?xml &lt;span class="nv"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;UTF-8&amp;quot;&lt;/span&gt;?&amp;gt;
+&amp;lt;!DOCTYPE mycat:rule SYSTEM &lt;span class="s2"&gt;&amp;quot;rule.dtd&amp;quot;&lt;/span&gt;&amp;gt;
+&amp;lt;mycat:rule xmlns:mycat&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://io.mycat/&amp;quot;&lt;/span&gt;&amp;gt;
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rule1&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;id&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;func1&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rule2&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;user_id&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;func1&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sharding-by-intfile&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;sharding_id&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;hash-int&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;auto-sharding-long&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;id&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;rang-long&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mod-long&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;id&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;mod-long&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sharding-by-murmur&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;id&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;murmur&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;crc32slot&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;id&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;crc32slot&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sharding-by-month&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;create_time&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;partbymonth&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;latest-month-calldate&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;calldate&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;latestMonth&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;auto-sharding-rang-mod&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;id&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;rang-mod&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+
+    &amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;jch&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;id&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;jump-consistent-hash&amp;lt;/algorithm&amp;gt;
+        &amp;lt;/rule&amp;gt;
+    &amp;lt;/tableRule&amp;gt;
+
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;murmur&amp;quot;&lt;/span&gt;
+        &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.PartitionByMurmurHash&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;seed&amp;quot;&lt;/span&gt;&amp;gt;0&amp;lt;/property&amp;gt;&amp;lt;!-- 默认是0 --&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;count&amp;quot;&lt;/span&gt;&amp;gt;2&amp;lt;/property&amp;gt;&amp;lt;!-- 要分片的数据库节点数量，必须指定，否则没法分片 --&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;virtualBucketTimes&amp;quot;&lt;/span&gt;&amp;gt;160&amp;lt;/property&amp;gt;&amp;lt;!-- 一个实际的数据库节点被映射为这么多虚拟节点，默认是160倍，也就是虚拟节点数是物理节点数的160倍 --&amp;gt;
+        &amp;lt;!-- &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;weightMapFile&amp;quot;&lt;/span&gt;&amp;gt;weightMapFile&amp;lt;/property&amp;gt; 节点的权重，没有指定权重的节点默认是1。以properties文件的格式填写，以从0开始到count-1的整数值也就是节点索引为key，以节点权重值为值。所有权重值必须是正整数，否则以1代替 --&amp;gt;
+        &amp;lt;!-- &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bucketMapPath&amp;quot;&lt;/span&gt;&amp;gt;/etc/mycat/bucketMapPath&amp;lt;/property&amp;gt; 
+            用于测试时观察各物理节点与虚拟节点的分布情况，如果指定了这个属性，会把虚拟节点的murmur hash值与物理节点的映射按行输出到这个文件，没有默认值，如果不指定，就不会输出任何东西 --&amp;gt;
+    &amp;lt;/function&amp;gt;
+
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;crc32slot&amp;quot;&lt;/span&gt;
+              &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.PartitionByCRC32PreSlot&amp;quot;&lt;/span&gt;&amp;gt;
+    &amp;lt;/function&amp;gt;
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hash-int&amp;quot;&lt;/span&gt;
+        &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.PartitionByFileMap&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mapFile&amp;quot;&lt;/span&gt;&amp;gt;partition-hash-int.txt&amp;lt;/property&amp;gt;
+    &amp;lt;/function&amp;gt;
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rang-long&amp;quot;&lt;/span&gt;
+        &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.AutoPartitionByLong&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mapFile&amp;quot;&lt;/span&gt;&amp;gt;autopartition-long.txt&amp;lt;/property&amp;gt;
+    &amp;lt;/function&amp;gt;
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mod-long&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.PartitionByMod&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;!-- how many data nodes --&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;count&amp;quot;&lt;/span&gt;&amp;gt;3&amp;lt;/property&amp;gt;
+    &amp;lt;/function&amp;gt;
+
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;func1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.PartitionByLong&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;partitionCount&amp;quot;&lt;/span&gt;&amp;gt;8&amp;lt;/property&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;partitionLength&amp;quot;&lt;/span&gt;&amp;gt;128&amp;lt;/property&amp;gt;
+    &amp;lt;/function&amp;gt;
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;latestMonth&amp;quot;&lt;/span&gt;
+        &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.LatestMonthPartion&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;splitOneDay&amp;quot;&lt;/span&gt;&amp;gt;24&amp;lt;/property&amp;gt;
+    &amp;lt;/function&amp;gt;
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;partbymonth&amp;quot;&lt;/span&gt;
+        &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.PartitionByMonth&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dateFormat&amp;quot;&lt;/span&gt;&amp;gt;yyyy-MM-dd&amp;lt;/property&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sBeginDate&amp;quot;&lt;/span&gt;&amp;gt;2015-01-01&amp;lt;/property&amp;gt;
+    &amp;lt;/function&amp;gt;
+
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rang-mod&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.PartitionByRangeMod&amp;quot;&lt;/span&gt;&amp;gt;
+            &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mapFile&amp;quot;&lt;/span&gt;&amp;gt;partition-range-mod.txt&amp;lt;/property&amp;gt;
+    &amp;lt;/function&amp;gt;
+
+    &amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;jump-consistent-hash&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.PartitionByJumpConsistentHash&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;totalBuckets&amp;quot;&lt;/span&gt;&amp;gt;3&amp;lt;/property&amp;gt;
+    &amp;lt;/function&amp;gt;
+&amp;lt;/mycat:rule&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;配置Mycat&lt;/h3&gt;
+&lt;h4&gt;修改配置文件server.xml&lt;/h4&gt;
+&lt;p&gt;修改用户信息，与MySQL区分， 如下：&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 196.45669291338584" &gt;&lt;img width="499" height="127" src="/Blog-With-GitHub-Boilerplate/archives/assets/58eb9cafb063913e43078f4031a5399e.png" /&gt;&lt;figcaption&gt;2020-02-15_171149&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4&gt;修改配置文件 schema.xml&lt;/h4&gt;
+&lt;p&gt;删除&lt;schema&gt;标签间的表信息， &lt;dataNode&gt;标签只留一个， &lt;dataHost&gt;标签只留一个， &lt;writeHost&gt;&lt;/p&gt;
+&lt;p&gt;&lt;readHost&gt;只留一对&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 161.91860465116278" &gt;&lt;img width="1114" height="344" src="/Blog-With-GitHub-Boilerplate/archives/assets/acc3638cd9408e16fc51bbe1f31de157.png" /&gt;&lt;figcaption&gt;2020-02-15_172620&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4&gt;测试是否能连接&lt;/h4&gt;
+&lt;p&gt;测试前，先开启Mysql的远程访问权限和关闭防火墙（或者放行3306端口）。然后测试本机是否能够通过远程方式连接本机。&lt;/p&gt;
+&lt;p&gt;主机1：192.168.2.2&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mysql -uroot -proot -h192.168.2.2 -P3306
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;主机2：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mysql -uroot -proot -h192.168.2.3 -P3306
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;测试成功在继续下一步。登录mycat，默认端口为8066.可以通过server.xml中&lt;property name="serverPort"&gt;8066&lt;/property&gt;来修改端口&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mysql -umycat -proot -h 192.168.2.2 -P8066&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这时候可以看到TESTDB，但是如要操作TESTDB。需要在主机1：192.168.2.2和主机2：192.168.2.3中创建testdb。schema.xml中就是这么配置。如上图。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; show @@version;
++---------------------------------------------+
+| VERSION                                     |
++---------------------------------------------+
+| 5.6.29-mycat-1.6.7.1-release-20190627191042 |
++---------------------------------------------+
+1 row in set (0.00 sec)&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;搭建读写分离&lt;/h3&gt;
+&lt;h4&gt;搭建一主一从&lt;/h4&gt;
+&lt;p&gt;一个主机用于处理所有写请求，一台从机负责所有读请求，&lt;/p&gt;
+&lt;p&gt;架构:&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 89.94638069705094" &gt;&lt;img width="671" height="373" src="/Blog-With-GitHub-Boilerplate/archives/assets/584ebcc2fb156acb9c1ab80f9597a1d2.png" /&gt;&lt;figcaption&gt;2020-02-15_203717&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;一主一从搭建比较容易。但是需要先搭建主机（192.168.2.2）和 从机（192.168.2.3）之间的主从复制。&lt;/p&gt;
+&lt;h5&gt;主从复制&lt;/h5&gt;
+&lt;p&gt;原理图：&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 106.7524115755627" &gt;&lt;img width="664" height="311" src="/Blog-With-GitHub-Boilerplate/archives/assets/128ce7a3af48f85e5aa35ffe492b6159.png" /&gt;&lt;figcaption&gt;2020-02-15_204254&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;master&lt;ul&gt;
+&lt;li&gt;binlog dump线程：当主库中有数据更新时，那么主库就会根据按照设置的binlog格式，将此次更新的事件类型写入到主库的binlog文件中，此时主库会创建log dump线程通知slave有数据更新，当I/O线程请求日志内容时，会将此时的binlog名称和当前更新的位置同时传给slave的I/O线程。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;slave&lt;ul&gt;
+&lt;li&gt;I/O线程：该线程会连接到master，向log dump线程请求一份指定binlog文件位置的副本，并将请求回来的binlog存到本地的relay log中，relay log和binlog日志一样也是记录了数据更新的事件，它也是按照递增后缀名的方式，产生多个relay log（ host_name-relay-bin.000001）文件，slave会使用一个index文件（ host_name-relay-bin.index）来追踪当前正在使用的relay log文件。&lt;/li&gt;
+&lt;li&gt;SQL线程：该线程检测到relay log有更新后，会读取并在本地做redo操作，将发生在主库的事件在本地重新执行一遍，来保证主从数据同步。此外，如果一个relay log文件中的全部事件都执行完毕，那么SQL线程会自动将该relay log 文件删除掉。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MySQL复制支持多种不同的复制策略，包括&lt;em&gt;同步、半同步、异步和延迟策略&lt;/em&gt;等。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;查看可以安装的包：&lt;code&gt;yum –y list mercurial&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;安装：&lt;code&gt;yum install mercurial&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;查看安装的hg版本：&lt;code&gt;hg --d'dversion&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;查看已安装的 &lt;code&gt;mercurial: yum –y installed | grep mercurial&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;同步策略&lt;/strong&gt;：Master要等待所有Slave应答之后才会提交（MySql对DB操作的提交通常是先对操作事件进行二进制日志文件写入然后再进行提交）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;半同步策略&lt;/strong&gt;：Master等待至少一个Slave应答就可以提交。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;异步策略&lt;/strong&gt;：Master不需要等待Slave应答就可以提交。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;延迟策略&lt;/strong&gt;：Slave要至少落后Master指定的时间&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;安装完成后，使用&lt;code&gt;hg --version&lt;/code&gt;看是否成功安装&lt;/p&gt;
-&lt;h4&gt;2 安装相关依赖&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;yum -y install zlib zlib-devel
-
- yum -y install bzip2 bzip2-devel
-
- yum -y install ncurses ncurses-devel
-
- yum -y install readline readline-devel
-
- yum -y install openssl openssl-devel
-
- yum -y install openssl-static
-
- yum -y install xz lzma xz-devel
-
- yum -y install sqlite sqlite-devel
-
- yum -y install gdbm gdbm-devel
-
- yum -y install bzip2 bzip2-devel
-
- yum -y install ncurses ncurses-devel
-
- yum -y install readline readline-devel
-
- yum -y install openssl openssl-devel
-
- yum -y install openssl-static
-
- yum -y install xz lzma xz-devel
-
- yum -y install sqlite sqlite-devel
-
- yum -y install gdbm gdbm-devel
-
- yum -y install tk tk-devel
-
- yum -y install libffi-devel 
-
- yum groupinstall "Development Tools" 
-
- yum install libXtst-devel libXt-devel libXrender-devel
-
-yum install cups-devel
-
-sudo yum install cups-devel
-
-sudo yum install alsa-lib-devel
-
-yum install alsa-lib-devel cups-devel libX* gcc gcc-c++ freetype-devel libstdc++-static ant make&lt;/code&gt;&lt;/pre&gt;
-&lt;h5&gt;2.1 安装JDK1.8(若有，则无需安装)&lt;/h5&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.8.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;openjdk&lt;/span&gt;  &lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.8.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;openjdk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt;
-&lt;span class="n"&gt;或者安装jdk1&lt;/span&gt;&lt;span class="mf"&gt;.7&lt;/span&gt;&lt;span class="n"&gt;也行&lt;/span&gt;
-&lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.7.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;openjdk&lt;/span&gt;  &lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.7.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;openjdk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt;
+&lt;p&gt;根据binlog日志格式的不同，MySQL复制同时支持多种不同的复制模式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;基于语句的复制，即Statement&lt;/strong&gt; Based Replication（SBR）：记录每一条更改数据的sql&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：binlog文件较小，节约I/O，性能较高。&lt;/li&gt;
+&lt;li&gt;缺点：不是所有的数据更改都会写入binlog文件中，尤其是使用MySQL中的一些特殊函数（如LOAD_FILE()、UUID()等）和一些不确定的语句操作，从而导致主从数据无法复制的问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;基于行的复制，即&lt;strong&gt;Row&lt;/strong&gt; Based Replication（RBR）：不记录sql，只记录每行数据的更改细节&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：详细的记录了每一行数据的更改细节，这也意味着不会由于使用一些特殊函数或其他情况导致不能复制的问题。&lt;/li&gt;
+&lt;li&gt;缺点：由于row格式记录了每一行数据的更改细节，会产生大量的binlog日志内容，性能不佳，并且会增大主从同步延迟出现的几率。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;混合复制（Mixed）&lt;/p&gt;
+&lt;p&gt;一般的语句修改使用statment格式保存binlog，如一些函数，statement无法完成主从复制的操作，则采用row格式保存binlog，MySQL会根据执行的每一条具体的sql语句来区分对待记录的日志形式，也就是在Statement和Row之间选择一种。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;修改主机1的mysql配置文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vim /etc/my.cnf
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;查看版本：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@centos7_02 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# java -version&lt;/span&gt;
-openjdk version &lt;span class="s2"&gt;&amp;quot;1.8.0_242&amp;quot;&lt;/span&gt;
-OpenJDK Runtime Environment &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;1&lt;/span&gt;.8.0_242-b08&lt;span class="o"&gt;)&lt;/span&gt;
-OpenJDK &lt;span class="m"&gt;64&lt;/span&gt;-Bit Server VM &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;25&lt;/span&gt;.242-b08, mixed mode&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;p&gt;my.cnf:   在[mysqld]标签下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#主服务器唯一ID
+server-id=1
+#启用二进制日志
+log-bin=mysql-bin
+## 设置不要复制的数据库(可设置多个)
+binlog-ignore-db=mysql
+binlog-ignore-db=information_schema
+##设置需要复制的数据库
+binlog-do-db=testdb
+##设置logbin格式
+binlog_format=STATEMENT&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重启Mysql数据库 并重新登录：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;create user slave IDENTIFIED BY 'root';
+GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%' IDENTIFIED BY 'root';
+flush privileges;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;若提示密码不符合要求，这修改Mysql的策略：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt; global &lt;span class="nv"&gt;validate_password_policy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;LOW&lt;span class="p"&gt;;&lt;/span&gt; 
+&lt;span class="nb"&gt;set&lt;/span&gt; global &lt;span class="nv"&gt;validate_password_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+flush privileges&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;2.2 安装ccache&lt;/h5&gt;
-&lt;p&gt;ccache不能用yum形式安装，所以，使用源码包来编译安装。建议使用&lt;strong&gt;root&lt;/strong&gt;用户来完成，否则会有权限问题。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt
-wget http://samba.org/ftp/ccache/ccache-3.2.4.tar.gz
-tar -zxf ccache-3.2.4.tar.gz
-mkdir /usr/local/ccache-3.2.4/
-&lt;span class="nb"&gt;cd&lt;/span&gt; /usr/local/ccache-3.2.4/
-/opt/ccache-3.2.4/configure -prefix&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/ccache-3.2.4
-make -j8
-make install
-&lt;span class="nb"&gt;cd&lt;/span&gt; /usr/bin
-mv ccache ccache_bk    &lt;span class="c1"&gt;#移除原有的，防止原来存在ccache而导致问题&lt;/span&gt;
-ln -s /usr/local/ccache-3.2.4/bin/ccache ccache
-ccache --v
+&lt;p&gt;修改从机的配置：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vim /eyc/my.cnf&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;配置如下（本次的从机的系统为centos8）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[mysqld]
+server-id=2
+relay-log=mysql-relay&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如图：&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 111.35458167330677" &gt;&lt;img width="559" height="251" src="/Blog-With-GitHub-Boilerplate/archives/assets/2764877ff2a3b59ea3d87bd3886f40a9.png" /&gt;&lt;figcaption&gt;2020-02-16_155404&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;查询&lt;strong&gt;主机&lt;/strong&gt;master的状态：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mysql&amp;gt; show master status&lt;span class="p"&gt;;&lt;/span&gt;
++------------------+----------+--------------+--------------------------+-------------------+
+&lt;span class="p"&gt;|&lt;/span&gt; File             &lt;span class="p"&gt;|&lt;/span&gt; Position &lt;span class="p"&gt;|&lt;/span&gt; Binlog_Do_DB &lt;span class="p"&gt;|&lt;/span&gt; Binlog_Ignore_DB         &lt;span class="p"&gt;|&lt;/span&gt; Executed_Gtid_Set &lt;span class="p"&gt;|&lt;/span&gt;
++------------------+----------+--------------+--------------------------+-------------------+
+&lt;span class="p"&gt;|&lt;/span&gt; mysql-bin.000002 &lt;span class="p"&gt;|&lt;/span&gt;      &lt;span class="m"&gt;154&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; testdb       &lt;span class="p"&gt;|&lt;/span&gt; mysql,information_schema &lt;span class="p"&gt;|&lt;/span&gt;                   &lt;span class="p"&gt;|&lt;/span&gt;
++------------------+----------+--------------+--------------------------+-------------------+
+&lt;span class="m"&gt;1&lt;/span&gt; row in &lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.00 sec&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;3.下载源码(等待时间比较长)&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir /root/workspace
-&lt;span class="nb"&gt;cd&lt;/span&gt; /root/workspace
-hg clone http://hg.openjdk.java.net/jdk8u/jdk8u openjdk8
-&lt;span class="nb"&gt;cd&lt;/span&gt; openjdk8
-sh get_source.sh
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;---》 记录下File和Position的值，执行完此步骤后不要再操作主服务器MySQL，防止主服务器状态值变化&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;strong&gt;从机&lt;/strong&gt;上配置需要复制的主机 ：&lt;/p&gt;
+&lt;p&gt;格式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CHANGE MASTER TO MASTER_HOST='主机的IP地址',
+MASTER_USER='slave',
+MASTER_PASSWORD='123123',
+MASTER_LOG_FILE='mysql-bin.具体数字',MASTER_LOG_POS=具体值;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;本次配置为：(在从机上运行,下面参数根据具体情况修改)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CHANGE MASTER TO MASTER_HOST='192.168.2.2',
+MASTER_USER='slave',
+MASTER_PASSWORD='root',
+MASTER_LOG_FILE='mysql-bin.000002',MASTER_LOG_POS=154;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;启动从服务器复制功能&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;start slave;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看从服务器状态&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;show slave status\G;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;无报错这成功，如下图：&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 50.39292730844794" &gt;&lt;img width="513" height="509" src="/Blog-With-GitHub-Boilerplate/archives/assets/89ca3d385dacfcb08da8ccb4edf4504f.png" /&gt;&lt;figcaption&gt;2020-02-16_105728&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;补充几个命令：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;stop slave;  #停止slave&lt;/code&gt;
+&lt;code&gt;reset master;   #重置master&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;因为配置中使用testdb，所以要在主机一（192.168.2.2）和主机二（192.168.2.3）创建数据库testdb&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;database&lt;/span&gt; &lt;span class="n"&gt;testdb&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="n"&gt;hostname&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="k"&gt;insert&lt;/span&gt; &lt;span class="k"&gt;into&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt; &lt;span class="k"&gt;values&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;@@&lt;/span&gt;&lt;span class="n"&gt;hostname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="o"&gt;##&lt;/span&gt;&lt;span class="err"&gt;由于本次实验&lt;/span&gt;&lt;span class="o"&gt;@@&lt;/span&gt;&lt;span class="n"&gt;hostname在两个主机的内容&lt;/span&gt;&lt;span class="err"&gt;，为了区分，直接使用工具分别修改这个表的值为&lt;/span&gt;&lt;span class="n"&gt;centos7和centos8&lt;/span&gt;
+
+&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;------+----------+&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;   &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;hostname&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;------+----------+&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;    &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;centos7&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;------+----------+&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt;&lt;span class="err"&gt;多次执行查询语句，都是输出&lt;/span&gt;&lt;span class="n"&gt;centos7&lt;/span&gt;&lt;span class="err"&gt;，读请求都发送到写主机上。未开启读写分离。&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;如果出现下面的这行提示，表示下载源码的过程中出现了一些意外，重新执行下载的那个命令，直到将源代码下载下来,否则后续会出现各种问题&lt;/strong&gt;&lt;/p&gt;
-&lt;h4&gt;4. 开始编译安装&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /root/workspace/openjdk8
-chmod +x configure 
-./configure 
-make clean &lt;span class="c1"&gt;#（多次编译，清除之前的数据）&lt;/span&gt;
-make
+&lt;p&gt;&lt;figure style="flex: 128.89447236180905" &gt;&lt;img width="513" height="199" src="/Blog-With-GitHub-Boilerplate/archives/assets/673526f139ac11658db80d4eaa352eca.png" /&gt;&lt;figcaption&gt;2020-02-16_160426&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4&gt;开启读写分离&lt;/h4&gt;
+&lt;p&gt;修改schema.xml 的&lt;dataHost&gt;的balance属性，通过此属性配置读写分离的类型&lt;/p&gt;
+&lt;p&gt;负载均衡类型，目前的取值有4 种：
+（1） balance="0", 不开启读写分离机制， 所有读操作都发送到当前可用的 writeHost 上。
+（2） balance="1"，全部的 readHost 与 stand by writeHost 参与 select 语句的负载均衡，简单的说，当双主双从
+模式(M1-&amp;gt;S1， M2-&amp;gt;S2，并且 M1 与 M2 互为主备)，正常情况下， M2,S1,S2 都参与 select 语句的负载均衡。
+（3） balance="2"，所有读操作都随机的在 writeHost、 readhost 上分发。
+（4） balance="3"，所有读请求随机的分发到 readhost 执行， writerHost 不负担读压力&lt;/p&gt;
+&lt;p&gt;修改balance值为1，开启读写分离。但是由于只有一个主机和从机。这个结果会和balance=3的结果一样，所以本次修改为2，这样可以看到不一样的结果。修改完成后重启Mycat。&lt;/p&gt;
+&lt;p&gt;效果如下：&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 45.021186440677965" &gt;&lt;img width="425" height="472" src="/Blog-With-GitHub-Boilerplate/archives/assets/f2e182723ebf661886b97ac437675c6a.png" /&gt;&lt;figcaption&gt;2020-02-16_161327&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4&gt;搭建双主双从&lt;/h4&gt;
+&lt;p&gt;结果图：&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 117.40331491712708" &gt;&lt;img width="850" height="362" src="/Blog-With-GitHub-Boilerplate/archives/assets/664563e8837ce1b0eb1e6264b076bd2d.png" /&gt;&lt;figcaption&gt;2020-02-16_161600&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;双主双从：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;主1：192.168.2.2&lt;/p&gt;
+&lt;p&gt;从1：192.168.2.3&lt;/p&gt;
+&lt;p&gt;主2：192.168.2.5&lt;/p&gt;
+&lt;p&gt;从2：192.168.2.6&lt;/p&gt;
+&lt;h5&gt;配置如下&lt;/h5&gt;
+&lt;p&gt;修改配置：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vim /etc/my.cnf   #下面四台机器都是修改这个给文件&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;主（master）1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#主服务器唯一ID
+server-id=1
+#启用二进制日志
+log-bin=mysql-bin
+# 设置不要复制的数据库(可设置多个)
+binlog-ignore-db=mysql
+binlog-ignore-db=information_schema
+#设置需要复制的数据库
+binlog-do-db=testdb   #需要复制的主数据库名字
+#设置logbin格式
+binlog_format=STATEMENT
+# 在作为从数据库的时候， 有写入操作也要更新二进制日志文件
+log-slave-updates
+#表示自增长字段每次递增的量，指自增字段的起始值，其默认值是1， 取值范围是1 .. 65535
+auto-increment-increment=2
+# 表示自增长字段从哪个数开始，指字段一次递增多少，他的取值范围是1 .. 65535
+auto-increment-offset=1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;主机（master）二：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#主服务器唯一ID
+server-id=3
+#启用二进制日志
+log-bin=mysql-bin
+# 设置不要复制的数据库(可设置多个)
+binlog-ignore-db=mysql
+binlog-ignore-db=information_schema
+#设置需要复制的数据库
+binlog-do-db=testdb   #需要复制的主数据库名字
+#设置logbin格式
+binlog_format=STATEMENT
+# 在作为从数据库的时候，有写入操作也要更新二进制日志文件
+log-slave-updates
+#表示自增长字段每次递增的量，指自增字段的起始值，其默认值是1，取值范围是1 .. 65535
+auto-increment-increment=2
+# 表示自增长字段从哪个数开始，指字段一次递增多少，他的取值范围是1 .. 65535
+auto-increment-offset=2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;从机（slave）一：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#从服务器唯一ID
+server-id=2
+#启用中继日志
+relay-log=mysql-relay&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;从机二（slave）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#从服务器唯一ID
+server-id=4
+#启用中继日志
+relay-log=mysql-relay&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;数据库在修改完成后，重启一下,并关闭防火墙或者放心相关端口，如3306&lt;/p&gt;
+&lt;p&gt;在两台主机，分别建立slave账户并授权：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;create user slave IDENTIFIED BY 'root';
+GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%' IDENTIFIED BY 'root';
+flush privileges;GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%' IDENTIFIED BY '123123';&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;查询主机（maste）一：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;show master status;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;查询主机（master）二：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;show master status;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;分别记录下File和Position的值，执行完此步骤后不要再操作主服务器MYSQL，防止主服务器状态值变化&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为 Slava1 复制 Master1， Slava2 复制 Master2 ，&lt;/p&gt;
+&lt;p&gt;数据格式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CHANGE MASTER TO MASTER_HOST='主机的IP地址',
+MASTER_USER='slave',
+MASTER_PASSWORD='123123',
+MASTER_LOG_FILE='mysql-bin.具体数字',MASTER_LOG_POS=具体值;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;所以在slave一（192.168.2.3）中执行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CHANGE MASTER TO &lt;span class="nv"&gt;MASTER_HOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;192.168.2.2&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_USER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;slave&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;root&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_LOG_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mysql-bin.000002&amp;#39;&lt;/span&gt;,MASTER_LOG_POS&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;154&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;     &lt;span class="c1"&gt;#数字要根据之前记录的来填写&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;5.测试结果&lt;/h4&gt;
-&lt;p&gt;编写java代码&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cd&lt;/span&gt;   &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;workspace&lt;/span&gt;
-&lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;java&lt;/span&gt;
+
+&lt;pre&gt;&lt;code&gt;启动两台从服务器复制功能
+start slave; 
+
+查看从服务器状态，成功即可
+show slave status\G;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;slave二（192.168.2.6）中执行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CHANGE MASTER TO &lt;span class="nv"&gt;MASTER_HOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;192.168.2.2&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_USER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;slave&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;root&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_LOG_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mysql-bin.000002&amp;#39;&lt;/span&gt;,MASTER_LOG_POS&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;154&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;     &lt;span class="c1"&gt;#数字要根据之前记录的来填写&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;test.java&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;JvmTest&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;  
- &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;  
-    &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getProperty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;java.version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;  
-    &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getProperty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;os.name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;  
-    &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getProperty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;java.vendor.url&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;  
-   &lt;span class="p"&gt;}&lt;/span&gt;  
-&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;pre&gt;&lt;code&gt;启动两台从服务器复制功能
+start slave; 
+
+查看从服务器状态
+show slave status\G;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上面步骤和一主一从配置过程一样。还有一个很重要的是要实现master1（192.168.2.2）和master2（192.168.2.5）之间相互复制，即是Master2 复制 Master1， Master1 复制 Master2&lt;/p&gt;
+&lt;p&gt;在主机一（192.168.2.2）中执行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CHANGE MASTER TO &lt;span class="nv"&gt;MASTER_HOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;192.168.2.5&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_USER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;slave&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;root&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_LOG_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mysql-bin.000002&amp;#39;&lt;/span&gt;,MASTER_LOG_POS&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;154&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;     &lt;span class="c1"&gt;#数字要根据之前记录的来填写&lt;/span&gt;
+
+启动两台从服务器复制功能
+start slave&lt;span class="p"&gt;;&lt;/span&gt; 
+
+查看从服务器状态
+show slave status&lt;span class="se"&gt;\G&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;不能直接javac来编译java代码，因为系统自带jdk，所以这么用会使用系统的java环境。应该这么用，javac应该使用编译后的javac&lt;/p&gt;
-&lt;p&gt;即是：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;编译后的javac的所在目录&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;javac&lt;/span&gt;    &lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;java&lt;/span&gt;
-&lt;span class="n"&gt;编译后的java的所在目录&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;    &lt;span class="n"&gt;test&lt;/span&gt;
+&lt;p&gt;在主机二（192.168.2.5）中执行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CHANGE MASTER TO &lt;span class="nv"&gt;MASTER_HOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;192.168.2.2&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_USER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;slave&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;root&amp;#39;&lt;/span&gt;,
+&lt;span class="nv"&gt;MASTER_LOG_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mysql-bin.000002&amp;#39;&lt;/span&gt;,MASTER_LOG_POS&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;154&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;     &lt;span class="c1"&gt;#数字要根据之前记录的来填写&lt;/span&gt;
+
+启动两台从服务器复制功能
+start slave&lt;span class="p"&gt;;&lt;/span&gt; 
+
+查看从服务器状态
+show slave status&lt;span class="se"&gt;\G&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;输出结果。说明编译成功。&lt;/p&gt;
-</description><author>hi@imalan.cn (&lt;填写你的名字&gt;)</author><guid isPermaLink="true">/Blog-With-GitHub-Boilerplate/archives/my-first-awesome-post/</guid><pubDate>Tue, 17 Dec 2019 20:34:00 +0806</pubDate></item><item><title>Hello World!</title><link>/Blog-With-GitHub-Boilerplate/archives/typography/</link><description>&lt;div class="notice"&gt;这是一篇示例文章，在这里你可以看到常用页面元素的显示效果，同时也是 Markdown 语法的参考文章。保留或者删除本文，开始自己的创作吧！&lt;/div&gt;&lt;h2&gt;L2 Heading&lt;/h2&gt;
+&lt;p&gt;下面两个参数都是Yes，则说明主从配置成功！&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Slave_IO_Running: Yes
+Slave_SQL_Running: Yes
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;修改 Mycat 的配置文件 schema.xml&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;一：为了双主双从读写分离balance设置为1
+
+二：
+.....
+&amp;lt;dataNode name="dn1" dataHost="host1" database="testdb" /&amp;gt;
+&amp;lt;dataHost name="host1" maxCon="1000" minCon="10" balance="1"  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100" &amp;gt;
+    &amp;lt;heartbeat&amp;gt;select user()&amp;lt;/heartbeat&amp;gt;
+    &amp;lt;!-- can have multi write hosts --&amp;gt;
+    &amp;lt;writeHost host="hostM1" url="192.168.2.2:3306" user="root"  password="root"&amp;gt;
+          &amp;lt;!-- can have multi read hosts --&amp;gt;
+          &amp;lt;readHost host="hostS1" url="192.168.2.3:3306" user="root" password="root" /&amp;gt;
+    &amp;lt;/writeHost&amp;gt;
+
+    &amp;lt;writeHost host="hostM2" url="192.168.140.2:5" user="root"  password="root"&amp;gt;
+        &amp;lt;!-- can have multi read hosts --&amp;gt;
+        &amp;lt;readHost host="hostS2" url="192.168.2.6:3306" user="root"  password="root" /&amp;gt;
+    &amp;lt;/writeHost&amp;gt;
+&amp;lt;/dataHost&amp;gt;
+.....&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上面配置要根据具体情况配置。例如host， url，user,password,balance,writeType.&lt;/p&gt;
+&lt;p&gt;balance="1": 全部的readHost与stand by writeHost参与select语句的负载均衡。&lt;/p&gt;
+&lt;p&gt;writeType="0": 所有写操作发送到配置的第一个writeHost，第一个挂了切到还生存的第二个&lt;/p&gt;
+&lt;p&gt;writeType="1"，所有写操作都随机的发送到配置的 writeHost， 1.5 以后废弃不推荐&lt;/p&gt;
+&lt;p&gt;writeHost，重新启动后以切换后的为准，切换记录在配置文件中:dnindex.properties 。&lt;/p&gt;
+&lt;p&gt;switchType="1":&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;​         1 默认值，自动切换。&lt;/li&gt;
+&lt;li&gt;​ -1 表示不自动切换&lt;/li&gt;
+&lt;li&gt;​ 2 基于 MySQL 主从同步的状态决定是否切换。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此时已经配置完成。可以启动Mycat开始测试。测试和一主一从样。&lt;/p&gt;
+&lt;h3&gt;垂直拆分——分库&lt;/h3&gt;
+&lt;p&gt;一个数据库由很多表的构成，每个表对应着不同的业务，垂直切分是指按照业务将表进行分类，
+分布到不同 的数据库上面，这样也就将数据或者说压力分担到不同的库上面。&lt;/p&gt;
+&lt;h5&gt;如何划分表&lt;/h5&gt;
+&lt;p&gt;分库的原则： 有紧密关联关系的表应该在一个库里，相互没有关联关系的表可以分到不同的库里。&lt;/p&gt;
+&lt;p&gt;一个问题：在两台主机上的两个数据库中的表，能否关联查询？
+答案：不可以关联查询&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;订单状态字典表 &lt;/li&gt;
+&lt;li&gt;订单详细表 &lt;/li&gt;
+&lt;li&gt;订单表 &lt;/li&gt;
+&lt;li&gt;客户表 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;前三张表由于要进行关联查询，关系紧密。所以客户表分在一个数据库，另外三张都需要关联查询，分在另外一个数据库。&lt;/p&gt;
+&lt;h5&gt;修改schema.xml&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;....
+&amp;lt;schema &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;TESTDB&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;checkSQLschema&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;false&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;sqlMaxLimit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;100&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1&amp;quot;&lt;/span&gt;&amp;gt;
+       &amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;customer&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn2&amp;quot;&lt;/span&gt; &amp;gt;&amp;lt;/table&amp;gt;
+&amp;lt;/schema&amp;gt;
+&amp;lt;dataNode &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataHost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;host1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;database&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;orders&amp;quot;&lt;/span&gt; /&amp;gt;   &lt;span class="c1"&gt;#orders是数据库&lt;/span&gt;
+&amp;lt;dataNode &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn2&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataHost&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;host2&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;database&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;orders&amp;quot;&lt;/span&gt; /&amp;gt;
+
+
+&amp;lt;dataHost &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;host1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;maxCon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1000&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;minCon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;10&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;balance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;writeType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dbType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mysql&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;dbDriver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;native&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;switchType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;slaveThreshold&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;100&amp;quot;&lt;/span&gt;&amp;gt;
+     &amp;lt;heartbeat&amp;gt;select user&lt;span class="o"&gt;()&lt;/span&gt;&amp;lt;/heartbeat&amp;gt;
+     &amp;lt;!-- can have multi write hosts --&amp;gt;
+     &amp;lt;writeHost &lt;span class="nv"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hostM1&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;192.168.2.2:3306&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;root&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;root&amp;quot;&lt;/span&gt;&amp;gt;
+     &amp;lt;/writeHost&amp;gt;
+&amp;lt;/dataHost&amp;gt;
+
+&amp;lt;dataHost &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;host2&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;maxCon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1000&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;minCon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;10&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;balance&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;writeType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dbType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mysql&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dbDriver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;native&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;switchType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;   &lt;span class="nv"&gt;slaveThreshold&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;100&amp;quot;&lt;/span&gt;&amp;gt;
+      &amp;lt;heartbeat&amp;gt;select user&lt;span class="o"&gt;()&lt;/span&gt;&amp;lt;/heartbeat&amp;gt;
+      &amp;lt;!-- can have multi write hosts --&amp;gt;
+      &amp;lt;writeHost &lt;span class="nv"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hostM2&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;192.168.2.3:3306&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;root&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;root&amp;quot;&lt;/span&gt;&amp;gt;
+      &amp;lt;/writeHost&amp;gt;
+&amp;lt;/dataHost&amp;gt;
+...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;四张表原本是在orders数据库中，为了减少数据库压力。且客户表和其他三个表没有密切关系。所以主机一（192.168.2.2）中的数据库orders中存储前三张表，主机二（192.168.2.3）中的数据库orders存储客户表。&lt;/p&gt;
+&lt;p&gt;还有：&lt;/p&gt;
+&lt;p&gt;分库操作不是在原来的老数据库上进行操作，&lt;strong&gt;需要准备两台机器分别安装新的数据库&lt;/strong&gt; ，即是需要在两台机器上手动创建数据库。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;create database orders;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;启动Mycat，并且登录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd /usr/local/mycat/bin    #切换到自己安装mycat的目录下
+./mycat start
+#登录mycat
+mysql -umycat -proot -h192.168.2.2 -P8066
+
+#创建四个表
+CREATE TABLE customer(
+id INT AUTO_INCREMENT,
+NAME VARCHAR(200),
+PRIMARY KEY(id)
+);
+#订单表 rows:600万
+CREATE TABLE orders(
+id INT AUTO_INCREMENT,
+order_type INT,
+customer_id INT,
+amount DECIMAL(10,2),
+PRIMARY KEY(id)
+);
+#订单详细表 rows:600万
+CREATE TABLE orders_detail(
+id INT AUTO_INCREMENT,
+detail VARCHAR(2000),
+order_id INT,
+PRIMARY KEY(id)
+);
+#订单状态字典表 rows:20
+CREATE TABLE dict_order_type(
+id INT AUTO_INCREMENT,
+order_type VARCHAR(200),
+PRIMARY KEY(id)
+);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;创建表后，正常结果是一个数据库有三个表，另外一个数据库有一个顾客表。&lt;/p&gt;
+&lt;h3&gt;水平拆分——分表&lt;/h3&gt;
+&lt;p&gt;相对于垂直拆分，水平拆分不是将表做分类，而是按照某个字段的&lt;strong&gt;某种规则&lt;/strong&gt;来&lt;strong&gt;分散&lt;/strong&gt;到多个库之中，
+每个表中 包含一部分数据。简单来说，我们可以&lt;u&gt;将数据的水平切分理解为是按照数据行的切分，就&lt;/u&gt;
+&lt;u&gt;是将表中的某些行切分 到一个数据库，而另外的某些行又切分到其他的数据库中&lt;/u&gt;，。&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 30.4421768707483" &gt;&lt;img width="358" height="588" src="/Blog-With-GitHub-Boilerplate/archives/assets/e3bd9c403c6b223872f7683b62a02de1.png" /&gt;&lt;figcaption&gt;2020-02-17_144112&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;分辨规则要根据具体业务，从而具体确定。&lt;/p&gt;
+&lt;h4&gt;修改配置文件 schema.xml&lt;/h4&gt;
+&lt;p&gt;为 orders 表设置数据节点为 dn1、 dn2， 并指定分片规则为 mod_rule（自定义的名字）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;table name="orders" dataNode="dn1,dn2" rule="mod_rule" &amp;gt;&amp;lt;/table&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;figure style="flex: 423.29545454545456" &gt;&lt;img width="745" height="88" src="/Blog-With-GitHub-Boilerplate/archives/assets/f86d050dea1e070fd422fa1df9ae1b00.png" /&gt;&lt;figcaption&gt;2020-02-17_150252&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4&gt;修改配置文件 rule.xml&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;#在 rule 配置文件里新增分片规则 mod_rule，并指定规则适用字段为 customer_id，
+#还有选择分片算法 mod-long（对字段求模运算） ， customer_id 对两个节点求模，根据结果分片
+#配置算法 mod-long 参数 count 为 2，两个节点
+&amp;lt;tableRule name="mod_rule"&amp;gt;
+    &amp;lt;rule&amp;gt;
+          &amp;lt;columns&amp;gt;customer_id&amp;lt;/columns&amp;gt;
+          &amp;lt;algorithm&amp;gt;mod-long&amp;lt;/algorithm&amp;gt;
+    &amp;lt;/rule&amp;gt;
+&amp;lt;/tableRule&amp;gt;
+…
+&amp;lt;function name="mod-long" class="io.mycat.route.function.PartitionByMod"&amp;gt;
+      &amp;lt;!-- how many data nodes --&amp;gt;
+      &amp;lt;property name="count"&amp;gt;2&amp;lt;/property&amp;gt;
+&amp;lt;/function&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;如图：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 131.7829457364341" &gt;&lt;img width="680" height="258" src="/Blog-With-GitHub-Boilerplate/archives/assets/c421a4263bf2a0a23569cee35a788454.png" /&gt;&lt;figcaption&gt;2020-02-17_150759&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;由于之前主机二（192.168.2.3）没有order表，所以需要先手动创建表该表。&lt;/p&gt;
+&lt;p&gt;然后启动Mycat使其生效。&lt;/p&gt;
+&lt;h4&gt;测试效果&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;INSERT INTO orders(id,order_type,customer_id,amount) VALUES (1,101,100,100100);
+INSERT INTO orders(id,order_type,customer_id,amount) VALUES(2,101,100,100300);
+INSERT INTO orders(id,order_type,customer_id,amount) VALUES(3,101,101,120000);
+INSERT INTO orders(id,order_type,customer_id,amount) VALUES(4,101,101,103000);
+INSERT INTO orders(id,order_type,customer_id,amount) VALUES(5,102,101,100400);
+INSERT INTO orders(id,order_type,customer_id,amount) VALUES(6,102,100,100020);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;u&gt;注意：customer_id字段**不能省略**。因为分表的规则是作用在该字段上面。没有该字段，规则不会生效。&lt;/u&gt;&lt;/p&gt;
+&lt;p&gt;若出现结果为两个主机的orders表中数据分散，各有数据，即是成功。&lt;/p&gt;
+&lt;h4&gt;分表引出问题：&lt;/h4&gt;
+&lt;h5&gt;问题一：数据分表存储，那么查询整体数据时，是如何？&lt;/h5&gt;
+&lt;p&gt;结果图：&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 165.5737704918033" &gt;&lt;img width="808" height="244" src="/Blog-With-GitHub-Boilerplate/archives/assets/53a564282a428e162866e564525c2678.png" /&gt;&lt;figcaption&gt;2020-02-17_152041&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;数据查询结果：&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 216.8421052631579" &gt;&lt;img width="824" height="190" src="/Blog-With-GitHub-Boilerplate/archives/assets/e4a39775af42b682f1226b6e07e81010.png" /&gt;&lt;figcaption&gt;2020-02-17_152235&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;分析：如上面所看到，主机一存储为1，2，3，主机二存储为3，4，5，查询出为整体为1，2，6，3，4，5、即是查询的结果为Mycat合并后的结果。&lt;/p&gt;
+&lt;h5&gt;问题二：分表后，若实现和某些紧密的表的join操作，效率和性能问题如何解决？&lt;/h5&gt;
+&lt;p&gt;Mycat 借鉴了 NewSQL 领域的新秀 Foundation DB 的设计思路， Foundation DB 创新性的提
+出了 Table Group 的概念，其将&lt;u&gt;**子表的存储位置依赖于主表**&lt;/u&gt;，&lt;strong&gt;&lt;em&gt;&lt;u&gt;并且物理上紧邻存放&lt;/u&gt;&lt;/em&gt;&lt;/strong&gt;，因此彻底解决了
+JION 的效率和性能问 题，根据这一思路，提出了基于 E-R 关系的数据分片策略，子表的记录与所
+关联的父表记录存放在同一个数据分片上。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;修改 schema.xml 配置文件&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;table name="orders" dataNode="dn1,dn2" rule="mod_rule" &amp;gt;
+      &amp;lt;childTable name="orders_detail" primaryKey="id" joinKey="order_id" parentKey="id" /&amp;gt;
+&amp;lt;/table&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;#在dn2 创建 orders_detail 表
+#重启 Mycat
+#访问 Mycat 向 orders_detail 表插入数据
+INSERT INTO orders_detail(id,detail,order_id) values(1,'detail1',1);
+INSERT INTO orders_detail(id,detail,order_id) VALUES(2,'detail1',2);
+INSERT INTO orders_detail(id,detail,order_id) VALUES(3,'detail1',3);
+INSERT INTO orders_detail(id,detail,order_id) VALUES(4,'detail1',4);
+INSERT INTO orders_detail(id,detail,order_id) VALUES(5,'detail1',5);
+INSERT INTO orders_detail(id,detail,order_id) VALUES(6,'detail1',6);
+#在mycat、 dn1、 dn2中运行两个表join语句
+Select o.*,od.detail from orders o inner join orders_detail od on o.id=od.order_id;&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;问题三：对于该表数据变动不大，但是大部分表有依赖此表，对于这种表，如何解决这个问题？&lt;/h5&gt;
+&lt;p&gt;字典表具有以下几个特性：
+​   ① 变动不频繁
+​   ② 数据量总体变化不大
+​   ③ 数据规模不大，很少有超过数十万条记录&lt;/p&gt;
+&lt;p&gt;全局表具有以下特性：
+​   ① 全局表的插入、更新操作会实时在所有节点上执行，保持各个分片的数据一致性
+​   ② 全局表的查询操作，只从一个节点获取
+​   ③ 全局表可以跟任何一个表进行 JOIN 操作&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用Mycat的全局表。即是每一个主机都有一份该表，那么每一个主机都能够使用一模一样的表。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;配置：&lt;/p&gt;
+&lt;p&gt;修改 schema.xml 配置文件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;…
+&amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;orders&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1,dn2&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mod_rule&amp;quot;&lt;/span&gt; &amp;gt;
+    &amp;lt;childTable &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;orders_detail&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;primaryKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;joinKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;order_id&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;parentKey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt; /&amp;gt;
+&amp;lt;/table&amp;gt;
+&amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dict_order_type&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dataNode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dn1,dn2&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;global&amp;quot;&lt;/span&gt; &amp;gt;&amp;lt;/table&amp;gt;
+…
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;该表的type属性设置为global即可。&lt;/p&gt;
+&lt;p&gt;由于主机二之前没有dict_order_type ，所以需要手动创建&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;测试：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;重启 Mycat&lt;/li&gt;
+&lt;li&gt;访问 Mycat 向 dict_order_type 表插入数据&lt;/li&gt;
+&lt;li&gt;INSERT INTO dict_order_type(id,order_type) VALUES(101,'type1');
+INSERT INTO dict_order_type(id,order_type) VALUES(102,'type2'); &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;预期结果：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在Mycat、 dn1、 dn2中查询表数据 一模一样即可。&lt;/p&gt;
+&lt;h3&gt;常用分片规则&lt;/h3&gt;
+&lt;p&gt;1、 取模&lt;/p&gt;
+&lt;p&gt;2、 分片枚举&lt;/p&gt;
+&lt;p&gt;3、 范围约定&lt;/p&gt;
+&lt;p&gt;4、 按日期（天）分片&lt;/p&gt;
+&lt;h4&gt;取模：&lt;/h4&gt;
+&lt;p&gt;此规则为对分片字段求摸运算。 也是水平分表最常用规则。 orders 表采用了此规则。&lt;/p&gt;
+&lt;h4&gt;分片枚举&lt;/h4&gt;
+&lt;p&gt;通过在配置文件中配置可能的&lt;strong&gt;枚举 id&lt;/strong&gt;，&lt;u&gt;自己配置分片&lt;/u&gt;，本规则适用于特定的场景，比如有些业务
+需要按照省份或区县来做保存，而全国省份区县固定的，这类业务使用本条规则&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;配置：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;u&gt;前言：由于配置和之前的orders配置流程一样，古下面的配置都以简单的配置，具体参照orders订单表的配置工厂。&lt;/u&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;修改schema.xml配置文件 。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;table name="orders_ware_info" dataNode="dn1,dn2" rule="sharding_by_intfile" &amp;gt;&amp;lt;/table&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;修改rule.xml配置文件 。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;tableRule &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sharding_by_intfile&amp;quot;&lt;/span&gt;&amp;gt;
+      &amp;lt;rule&amp;gt;
+            &amp;lt;columns&amp;gt;areacode&amp;lt;/columns&amp;gt;
+            &amp;lt;algorithm&amp;gt;hash-int&amp;lt;/algorithm&amp;gt;
+      &amp;lt;/rule&amp;gt;
+&amp;lt;/tableRule&amp;gt;
+…
+&amp;lt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hash-int&amp;quot;&lt;/span&gt;  &lt;span class="nv"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;io.mycat.route.function.PartitionByFileMap&amp;quot;&lt;/span&gt;&amp;gt;   &lt;span class="c1"&gt;#这个才是重点&lt;/span&gt;
+      &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mapFile&amp;quot;&lt;/span&gt;&amp;gt;partition-hash-int.txt&amp;lt;/property&amp;gt;
+      &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&amp;gt;1&amp;lt;/property&amp;gt;
+      &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;defaultNode&amp;quot;&lt;/span&gt;&amp;gt;0&amp;lt;/property&amp;gt;
+&amp;lt;/function&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;解析：&lt;/p&gt;
+&lt;p&gt;columns：分片字段， algorithm：分片函数
+mapFile： 标识配置文件名称， type： 0为int型、 非0为String，
+defaultNode： 默认节点:小于 0 表示不设置默认节点，大于等于 0 表示设置默认节点，
+设置默认节点如果碰到不识别的枚举值，就让它路由到默认节点，如不设置不识别就报错&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;修改partition-hash-int.txt配置文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;110=0&lt;/code&gt;
+&lt;code&gt;120=1&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;重启 Mycat&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;访问Mycat创建表&lt;/p&gt;
+&lt;p&gt;订单归属区域信息表：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CREATE TABLE orders_ware_info
+&lt;span class="o"&gt;(&lt;/span&gt;
+  &lt;span class="sb"&gt;`&lt;/span&gt;id&lt;span class="sb"&gt;`&lt;/span&gt; INT AUTO_INCREMENT comment &lt;span class="s1"&gt;&amp;#39;编号&amp;#39;&lt;/span&gt;,
+  &lt;span class="sb"&gt;`&lt;/span&gt;order_id&lt;span class="sb"&gt;`&lt;/span&gt; INT comment &lt;span class="s1"&gt;&amp;#39;订单编号&amp;#39;&lt;/span&gt;,
+  &lt;span class="sb"&gt;`&lt;/span&gt;address&lt;span class="sb"&gt;`&lt;/span&gt; VARCHAR&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;200&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; comment &lt;span class="s1"&gt;&amp;#39;地址&amp;#39;&lt;/span&gt;,
+  &lt;span class="sb"&gt;`&lt;/span&gt;areacode&lt;span class="sb"&gt;`&lt;/span&gt; VARCHAR&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; comment &lt;span class="s1"&gt;&amp;#39;区域编号&amp;#39;&lt;/span&gt;,
+  PRIMARY KEY&lt;span class="o"&gt;(&lt;/span&gt;id&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;（6） 插入数据
+&lt;code&gt;INSERT INTO orders_ware_info(id, order_id,address,areacode) VALUES (1,1,'北京','110');&lt;/code&gt;
+&lt;code&gt;INSERT INTO orders_ware_info(id, order_id,address,areacode) VALUES (2,2,'天津','120');&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;结果：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;预期结果：&lt;/p&gt;
+&lt;p&gt;两个主机上的表数据分别各一个。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;范围约定&lt;/h4&gt;
+&lt;p&gt;此分片适用于，提前规划好分片字段某个范围属于哪个分片。&lt;/p&gt;
+&lt;p&gt;（1） 修改schema.xml配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;table name="payment_info" dataNode="dn1,dn2" rule="auto_sharding_long" &amp;gt;&amp;lt;/table&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（2） 修改rule.xml配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;tableRule name="auto_sharding_long"&amp;gt;
+&amp;lt;rule&amp;gt;
+&amp;lt;columns&amp;gt;order_id&amp;lt;/columns&amp;gt;
+&amp;lt;algorithm&amp;gt;rang-long&amp;lt;/algorithm&amp;gt;
+&amp;lt;/rule&amp;gt;
+&amp;lt;/tableRule&amp;gt;
+…
+&amp;lt;function name="rang-long"
+class="io.mycat.route.function.AutoPartitionByLong"&amp;gt;
+&amp;lt;property name="mapFile"&amp;gt;autopartition-long.txt&amp;lt;/property&amp;gt;
+&amp;lt;property name="defaultNode"&amp;gt;0&amp;lt;/property&amp;gt;
+&amp;lt;/function&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;columns：分片字段， algorithm：分片函数&lt;/p&gt;
+&lt;p&gt;mapFile： 标识配置文件名称， type： 0为int型、 非0为String，&lt;/p&gt;
+&lt;p&gt;defaultNode： 默认节点:小于 0 表示不设置默认节点，大于等于 0 表示设置默认节点，&lt;/p&gt;
+&lt;p&gt;设置默认节点如果碰到不识别的枚举值，就让它路由到默认节点，如不设置不识别就报错&lt;/p&gt;
+&lt;p&gt;（3） 修改autopartition-long.txt配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;0-102=0
+103-200=1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（4） 重启 Mycat&lt;/p&gt;
+&lt;p&gt;（5） 访问Mycat创建表&lt;/p&gt;
+&lt;p&gt;支付信息表&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CREATE TABLE payment_info
+(
+`id` INT AUTO_INCREMENT comment '编号',
+`order_id` INT comment '订单编号',
+`payment_status` INT comment '支付状态',
+PRIMARY KEY(id)
+);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（6） 插入数据&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;INSERT INTO payment_info (id,order_id,payment_status) VALUES (1,101,0);
+INSERT INTO payment_info (id,order_id,payment_status) VALUES (2,102,1);
+INSERT INTO payment_info (id,order_id ,payment_status) VALUES (3,103,0);
+INSERT INTO payment_info (id,order_id,payment_status) VALUES (4,104,1);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（7） 预期结果：&lt;/p&gt;
+&lt;p&gt;主机一和主机二的表上各有一个数据。&lt;/p&gt;
+&lt;h4&gt;按日期（天）分片&lt;/h4&gt;
+&lt;p&gt;此规则为按天分片。 设定时间格式、范围&lt;/p&gt;
+&lt;p&gt;（1） 修改schema.xml配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;table name="login_info" dataNode="dn1,dn2" rule="sharding_by_date" &amp;gt;&amp;lt;/table&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（2） 修改rule.xml配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;tableRule name="sharding_by_date"&amp;gt;
+    &amp;lt;rule&amp;gt;
+        &amp;lt;columns&amp;gt;login_date&amp;lt;/columns&amp;gt;
+        &amp;lt;algorithm&amp;gt;shardingByDate&amp;lt;/algorithm&amp;gt;
+    &amp;lt;/rule&amp;gt;
+&amp;lt;/tableRule&amp;gt;
+…
+&amp;lt;function name="shardingByDate" class="io.mycat.route.function.PartitionByDate"&amp;gt;
+      &amp;lt;property name="dateFormat"&amp;gt;yyyy-MM-dd&amp;lt;/property&amp;gt;
+      &amp;lt;property name="sBeginDate"&amp;gt;2019-01-01&amp;lt;/property&amp;gt;
+      &amp;lt;property name="sEndDate"&amp;gt;2019-01-04&amp;lt;/property&amp;gt; 
+      &amp;lt;property name="sPartionDay"&amp;gt;2&amp;lt;/property&amp;gt;
+&amp;lt;/function&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;columns：分片字段， algorithm：分片函数&lt;/p&gt;
+&lt;p&gt;dateFormat ：日期格式&lt;/p&gt;
+&lt;p&gt;sBeginDate ：开始日期&lt;/p&gt;
+&lt;p&gt;sEndDate：结束日期,则代表数据达到了这个日期的分片后循环从开始分片插入&lt;/p&gt;
+&lt;p&gt;sPartionDay ：分区天数，即默认从开始日期算起，分隔 2 天一个分区&lt;/p&gt;
+&lt;p&gt;（3） 重启 Mycat&lt;/p&gt;
+&lt;p&gt;（4） 访问Mycat创建表&lt;/p&gt;
+&lt;p&gt;用户信息表&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CREATE TABLE login_info
+(
+    `id` INT AUTO_INCREMENT comment '编号',
+    `user_id` INT comment '用户编号',
+    `login_date` date comment '登录日期',
+    PRIMARY KEY(id)
+);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（6） 插入数据&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;INSERT INTO login_info(id,user_id,login_date) VALUES (1,101,'2019-01-01');
+INSERT INTO login_info(id,user_id,login_date) VALUES (2,102,'2019-01-02');
+INSERT INTO login_info(id,user_id,login_date) VALUES (3,103,'2019-01-03');
+INSERT INTO login_info(id,user_id,login_date) VALUES (4,104,'2019-01-04');
+INSERT INTO login_info(id,user_id,login_date) VALUES (5,103,'2019-01-05');
+INSERT INTO login_info(id,user_id,login_date) VALUES (6,104,'2019-01-06');&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;结果：两个数据库中表各有数据。&lt;/p&gt;
+&lt;h3&gt;全局序列&lt;/h3&gt;
+&lt;p&gt;在实现分库分表的情况下，数据库自增主键已无法保证自增主键的全局唯一。为此， Mycat 提供
+了全局 sequence，并且提供了包含本地配置和数据库配置等多种实现方式&lt;/p&gt;
+&lt;p&gt;1、 本地文件 ：&lt;/p&gt;
+&lt;p&gt;2、 数据库方式&lt;/p&gt;
+&lt;p&gt;3、 时间戳方式&lt;/p&gt;
+&lt;p&gt;4、 自主生成全局序列&lt;/p&gt;
+&lt;h5&gt;本地文件方式&lt;/h5&gt;
+&lt;p&gt;参考官方文档：P106页&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;： 此方式 MyCAT 将 sequence 配置到文件中，当使用到 sequence 中的配置后， MyCAT 会更下
+classpath 中的 sequence_conf.properties 文件中 sequence 当前的值。
+配置方式：
+在 sequence_conf.properties 文件中做如下配置：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GLOBAL_SEQ.HISIDS=
+GLOBAL_SEQ.MINID=1001
+GLOBAL_SEQ.MAXID=1000000000
+GLOBAL_SEQ.CURID=1000&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中 HISIDS 表示使用过的历史分段(一般无特殊需要可不配置)， MINID 表示最小 ID 值， MAXID 表示最大
+ID 值， CURID 表示当前 ID 值。
+server.xml 中配置：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;system&amp;gt;&amp;lt;property name="sequnceHandlerType"&amp;gt;0&amp;lt;/property&amp;gt;&amp;lt;/system&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注： sequnceHandlerType 需要配置为 0，表示使用本地文件方式。&lt;/p&gt;
+&lt;p&gt;使用示例：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;insert into table1(id,name) values(next value for MYCATSEQ_GLOBAL,‘test’);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;缺点：当 MyCAT 重新发布后，配置文件中的 sequence 会恢复到初始值。
+优点：本地加载，读取速度较快&lt;/p&gt;
+&lt;h5&gt;数据库方式&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt; :&lt;/p&gt;
+&lt;p&gt;在数据库中建立一张表，存放 sequence 名称(name)， sequence 当前值(current_value)，步长(increment
+int 类型每次读取多少个 sequence，假设为 K)等信息；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sequence 获取步骤：&lt;/strong&gt;
+1). 当初次使用该 sequence 时，根据传入的 sequence 名称，从数据库这张表中读取 current_value，和
+increment 到 MyCat 中，并将数据库中的 current_value 设置为原 current_value 值+increment 值。
+​   MyCat 将读取到 current_value+increment 作为本次要使用的 sequence 值，下次使用时，自动加 1，当
+使用 increment 次后，执行步骤 1)相同的操作。
+​   MyCat 负责维护这张表，用到哪些 sequence，只需要在这张表中插入一条记录即可。 若某次读取的
+sequence 没有用完，系统就停掉了，则这次读取的 sequence 剩余值不会再使用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;配置&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;配置方式：&lt;/p&gt;
+&lt;p&gt;server.xml 配置：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;system&amp;gt;&amp;lt;property name="sequnceHandlerType"&amp;gt;1&amp;lt;/property&amp;gt;&amp;lt;/system&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注： sequnceHandlerType 需要配置为 1，表示使用数据库方式生成 sequence。&lt;/p&gt;
+&lt;p&gt;补充： 全局序列类型： 0-本地文件， 1-数据库方式， 2-时间戳方式。&lt;/p&gt;
+&lt;p&gt;数据库配置：&lt;/p&gt;
+&lt;p&gt;1) 创建 MYCAT_SEQUENCE 表&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;DROP TABLE IF EXISTS MYCAT_SEQUENCE&lt;span class="p"&gt;;&lt;/span&gt;    &lt;span class="c1"&gt;#创建存放 sequence 的表&lt;/span&gt;
+&lt;span class="c1"&gt;# name sequence 名称&lt;/span&gt;
+&lt;span class="c1"&gt;# current_value 当前 value&lt;/span&gt;
+&lt;span class="c1"&gt;# increment 增长步长! 可理解为 mycat 在数据库中一次读取多少个 sequence. 当这些用完后, 下次再从数&lt;/span&gt;
+&lt;span class="c1"&gt;#据库中读取。&lt;/span&gt;
+CREATE TABLE MYCAT_SEQUENCE &lt;span class="o"&gt;(&lt;/span&gt;
+    name VARCHAR&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; NOT NULL,
+    current_value INT NOT NULL,
+    increment INT NOT NULL DEFAULT &lt;span class="m"&gt;100&lt;/span&gt;,
+    PRIMARY KEY&lt;span class="o"&gt;(&lt;/span&gt;name&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;InnoDB&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;# 插入一条 sequence&lt;/span&gt;
+INSERT INTO MYCAT_SEQUENCE&lt;span class="o"&gt;(&lt;/span&gt;name,current_value,increment&lt;span class="o"&gt;)&lt;/span&gt;
+VALUES &lt;span class="o"&gt;(&lt;/span&gt;‘GLOBAL’, &lt;span class="m"&gt;100000&lt;/span&gt;,100&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;2) 创建相关 function&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 获取当前 sequence 的值 (返回当前值,增量)&lt;/span&gt;
+&lt;span class="k"&gt;DROP&lt;/span&gt; &lt;span class="n"&gt;FUNCTION&lt;/span&gt; &lt;span class="k"&gt;IF&lt;/span&gt; &lt;span class="k"&gt;EXISTS&lt;/span&gt; &lt;span class="n"&gt;mycat_seq_currval&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;DELIMITER&lt;/span&gt;
+&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="n"&gt;FUNCTION&lt;/span&gt; &lt;span class="nf"&gt;mycat_seq_currval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seq_name&lt;/span&gt; &lt;span class="kt"&gt;VARCHAR&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;RETURNS&lt;/span&gt; &lt;span class="kt"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="kp"&gt;CHARSET&lt;/span&gt; &lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="k"&gt;DETERMINISTIC&lt;/span&gt;
+&lt;span class="n"&gt;BEGIN&lt;/span&gt;
+    &lt;span class="k"&gt;DECLARE&lt;/span&gt; &lt;span class="n"&gt;retval&lt;/span&gt; &lt;span class="kt"&gt;VARCHAR&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kt"&gt;SET&lt;/span&gt; &lt;span class="n"&gt;retval&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;999999999&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;null&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="nf"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;CAST&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;current_value&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="kt"&gt;CHAR&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nf"&gt;CAST&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;increment&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="kt"&gt;CHAR&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="k"&gt;INTO&lt;/span&gt; &lt;span class="n"&gt;retval&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt;
+    &lt;span class="n"&gt;MYCAT_SEQUENCE&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;seq_name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;RETURN&lt;/span&gt; &lt;span class="n"&gt;retval&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;END&lt;/span&gt;
+&lt;span class="n"&gt;DELIMITER&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;# 设置 sequence 值&lt;/span&gt;
+&lt;span class="k"&gt;DROP&lt;/span&gt; &lt;span class="n"&gt;FUNCTION&lt;/span&gt; &lt;span class="k"&gt;IF&lt;/span&gt; &lt;span class="k"&gt;EXISTS&lt;/span&gt; &lt;span class="n"&gt;mycat_seq_setval&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;DELIMITER&lt;/span&gt;
+  &lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="n"&gt;FUNCTION&lt;/span&gt; &lt;span class="nf"&gt;mycat_seq_setval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seq_name&lt;/span&gt; &lt;span class="kt"&gt;VARCHAR&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="kt"&gt;INTEGER&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;RETURNS&lt;/span&gt; &lt;span class="kt"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="kp"&gt;CHARSET&lt;/span&gt; &lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="k"&gt;DETERMINISTIC&lt;/span&gt;
+&lt;span class="n"&gt;BEGIN&lt;/span&gt;
+    &lt;span class="k"&gt;UPDATE&lt;/span&gt; &lt;span class="n"&gt;MYCAT_SEQUENCE&lt;/span&gt;
+    &lt;span class="kt"&gt;SET&lt;/span&gt; &lt;span class="n"&gt;current_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+    &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;seq_name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;RETURN&lt;/span&gt; &lt;span class="nf"&gt;mycat_seq_currval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seq_name&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;END&lt;/span&gt;
+&lt;span class="n"&gt;DELIMITER&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;# 获取下一个 sequence 值&lt;/span&gt;
+&lt;span class="k"&gt;DROP&lt;/span&gt; &lt;span class="n"&gt;FUNCTION&lt;/span&gt; &lt;span class="k"&gt;IF&lt;/span&gt; &lt;span class="k"&gt;EXISTS&lt;/span&gt; &lt;span class="n"&gt;mycat_seq_nextval&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;DELIMITER&lt;/span&gt;
+&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="n"&gt;FUNCTION&lt;/span&gt; &lt;span class="nf"&gt;mycat_seq_nextval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seq_name&lt;/span&gt; &lt;span class="kt"&gt;VARCHAR&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;RETURNS&lt;/span&gt; &lt;span class="kt"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="kp"&gt;CHARSET&lt;/span&gt;
+&lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="k"&gt;DETERMINISTIC&lt;/span&gt;
+&lt;span class="n"&gt;BEGIN&lt;/span&gt;
+    &lt;span class="k"&gt;UPDATE&lt;/span&gt; &lt;span class="n"&gt;MYCAT_SEQUENCE&lt;/span&gt;
+    &lt;span class="kt"&gt;SET&lt;/span&gt; &lt;span class="n"&gt;current_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;current_value&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;increment&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;seq_name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;RETURN&lt;/span&gt; &lt;span class="nf"&gt;mycat_seq_currval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seq_name&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;END&lt;/span&gt;
+&lt;span class="n"&gt;DELIMITER&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;4) sequence_db_conf.properties 相关配置,指定 sequence 相关配置在哪个节点上：
+例如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;USER_SEQ=test_dn1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注意： MYCAT_SEQUENCE 表和以上的 3 个 function， 需要放在&lt;strong&gt;同一个节点&lt;/strong&gt;上。 function 请直接在具体节
+点的数据库上执行，如果执行的时候报：you might want to use the less safe log_bin_trust_function_creators variable需要对数据库做如下设置：
+windows 下 my.ini[mysqld]加上 log_bin_trust_function_creators=1
+linux 下/etc/my.cnf 下 my.ini[mysqld]加上 log_bin_trust_function_creators=1
+修改完后，即可在 mysql 数据库中执行上面的函数。
+使用示例：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;insert into table1(id,name) values(next value for MYCATSEQ_GLOBAL,‘test’)；&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;本地时间戳方式&lt;/h5&gt;
+&lt;p&gt;ID= 64 位二进制 (42(毫秒)+5(机器 ID)+5(业务编码)+12(重复累加)
+换算成十进制为 18 位数的 long 类型，每毫秒可以并发 12 位二进制的累加。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用方式&lt;/strong&gt;：
+a. 配 置 server.xml&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;property name="sequnceHandlerType"&amp;gt;2&amp;lt;/property&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;b. 在 mycat 下配置： sequence_time_conf.properties&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WORKID=0-31 #任意整数
+DATAACENTERID=0-31 #任意整数&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;多个个 mycat 节点下每个 mycat 配置的 WORKID， DATAACENTERID 不同，组成唯一标识，总共支持
+32*32=1024 种组合。
+ID 示例： 56763083475511&lt;/p&gt;
+&lt;p&gt;① 优点： 配置简单
+② 缺点： 18 位 ID 过长&lt;/p&gt;
+&lt;h5&gt;其他方式&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Zk 递增方式&lt;/li&gt;
+&lt;li&gt;使用 catelet 注解方式 &lt;/li&gt;
+&lt;li&gt;利用 zookeeper 方式实现  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;基于 HA 机制的 Mycat 高可用&lt;/h3&gt;
+&lt;p&gt;在实际项目中， Mycat 服务也需要考虑高可用性，如果 Mycat 所在服务器出现宕机，或 Mycat 服
+务故障，需要有备机提供服务，需要考虑 Mycat 集群。&lt;/p&gt;
+&lt;p&gt;我们可以使用 HAProxy + Keepalived 配合两台 Mycat 搭起 Mycat 集群，实现高可用性。 HAProxy
+实现了 MyCat 多节点的集群高可用和负载均衡， 而 HAProxy 自身的高可用则可以通过 Keepalived 来
+实现。&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 91.28878281622912" &gt;&lt;img width="765" height="419" src="/Blog-With-GitHub-Boilerplate/archives/assets/71aed405e2bfc620bf6a44dbf547cb44.png" /&gt;&lt;figcaption&gt;2020-02-17_200311&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 89.53900709219859" &gt;&lt;img width="505" height="282" src="/Blog-With-GitHub-Boilerplate/archives/assets/f1100745feb9ebb7c974a3142132600b.png" /&gt;&lt;figcaption&gt;use3&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4&gt;安装配置 HAProxy&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#1准备好HAProxy安装包，传到/opt目录下&lt;/span&gt;
+
+&lt;span class="c1"&gt;#2解压到/usr/local/src&lt;/span&gt;
+  tar -zxvf haproxy-1.5.18.tar.gz -C /usr/local/src
+
+&lt;span class="c1"&gt;#3进入解压后的目录，查看内核版本， 进行编译&lt;/span&gt;
+  &lt;span class="nb"&gt;cd&lt;/span&gt; /usr/local/src/haproxy-1.5.18
+  uname -r
+  make &lt;span class="nv"&gt;TARGET&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;linux310 &lt;span class="nv"&gt;PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/haproxy  &lt;span class="nv"&gt;ARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;x86_64
+&lt;span class="c1"&gt;# ARGET=linux310，内核版本，使用uname -r查看内核，如： 3.10.0-514.el7，此时该参数就为linux310；&lt;/span&gt;
+&lt;span class="c1"&gt;# ARCH=x86_64，系统位数；&lt;/span&gt;
+&lt;span class="c1"&gt;# PREFIX=/usr/local/haprpxy #/usr/local/haprpxy，为haprpxy安装路径。&lt;/span&gt;
+
+&lt;span class="c1"&gt;#4编译完成后，进行安装&lt;/span&gt;
+  make install &lt;span class="nv"&gt;PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/haproxy
+&lt;span class="c1"&gt;#5安装完成后， 创建目录、 创建HAProxy配置文件&lt;/span&gt;
+  mkdir -p /usr/data/haproxy/
+  vim /usr/local/haproxy/haproxy.conf
+&lt;span class="c1"&gt;#6向配置文件中插入以下配置信息,并保存&lt;/span&gt;
+global
+    log &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1 local0
+    &lt;span class="c1"&gt;#log 127.0.0.1 local1 notice&lt;/span&gt;
+    &lt;span class="c1"&gt;#log loghost local0 info&lt;/span&gt;
+    maxconn &lt;span class="m"&gt;4096&lt;/span&gt;
+    chroot /usr/local/haproxy     &lt;span class="c1"&gt;#&lt;/span&gt;
+    pidfile /usr/data/haproxy/haproxy.pid   &lt;span class="c1"&gt;#&lt;/span&gt;
+    uid &lt;span class="m"&gt;99&lt;/span&gt;
+    gid &lt;span class="m"&gt;99&lt;/span&gt;
+    daemon
+    &lt;span class="c1"&gt;#debug&lt;/span&gt;
+    &lt;span class="c1"&gt;#quiet&lt;/span&gt;
+defaults
+     log   global
+     mode tcp
+     option  abortonclose
+     option  redispatch
+     retries  &lt;span class="m"&gt;3&lt;/span&gt;
+     maxconn  &lt;span class="m"&gt;2000&lt;/span&gt;
+     timeout  connect &lt;span class="m"&gt;5000&lt;/span&gt;
+     timeout  client &lt;span class="m"&gt;50000&lt;/span&gt;
+     timeout  server &lt;span class="m"&gt;50000&lt;/span&gt;
+listen proxy_status
+    &lt;span class="nb"&gt;bind&lt;/span&gt; :48066
+        mode tcp
+        balance roundrobin
+        server mycat_1 &lt;span class="m"&gt;192&lt;/span&gt;.168.2.2:8066 check inter 10s    &lt;span class="c1"&gt;#mycat所在的ip&lt;/span&gt;
+        server mycat_2 &lt;span class="m"&gt;192&lt;/span&gt;.168.2.3:8066 check inter 10s    &lt;span class="c1"&gt;#mycat所在的ip&lt;/span&gt;
+frontend admin_stats
+    &lt;span class="nb"&gt;bind&lt;/span&gt; :7777
+        mode http
+        stats &lt;span class="nb"&gt;enable&lt;/span&gt;
+        option httplog
+        maxconn &lt;span class="m"&gt;10&lt;/span&gt;
+        stats refresh 30s
+        stats uri /admin    &lt;span class="c1"&gt;#浏览访问时要加的后缀&lt;/span&gt;
+        stats auth admin:123123   &lt;span class="c1"&gt;#账号  密码&lt;/span&gt;
+        stats hide-version
+        stats admin &lt;span class="k"&gt;if&lt;/span&gt; TRUE
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;启动HAProxy&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/haproxy.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;查看HAProxy进程&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;ps -ef|grep haproxy&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;打开浏览器访问&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;http://192.168.140.125:7777/admin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在弹出框输入用户名： admin密码： 123123&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 375.78125" &gt;&lt;img width="962" height="128" src="/Blog-With-GitHub-Boilerplate/archives/assets/e9a9cdb464514a57fe674666c9dbf861.png" /&gt;&lt;figcaption&gt;2020-02-17_202031&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;验证负载均衡，通过HAProxy访问Mycat&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;mysql -umycat -p123456 -h 192.168.140.126 -P 48066&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;配置 Keepalived&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#1准备好Keepalived安装包，传到/opt目录下&lt;/span&gt;
+&lt;span class="c1"&gt;#2解压到/usr/local/src&lt;/span&gt;
+tar -zxvf keepalived-1.4.2.tar.gz -C /usr/local/src
+&lt;span class="c1"&gt;#3安装依赖插件&lt;/span&gt;
+yum install -y gcc openssl-devel popt-devel
+&lt;span class="c1"&gt;#3进入解压后的目录， 进行配置， 进行编译&lt;/span&gt;
+&lt;span class="nb"&gt;cd&lt;/span&gt; /usr/local/src/keepalived-1.4.2
+./configure --prefix&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/keepalived
+&lt;span class="c1"&gt;#4进行编译， 完成后进行安装&lt;/span&gt;
+make &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; make install
+&lt;span class="c1"&gt;#5运行前配置&lt;/span&gt;
+cp /usr/local/src/keepalived-1.4.2/keepalived/etc/init.d/keepalived /etc/init.d/
+mkdir /etc/keepalived
+cp /usr/local/keepalived/etc/keepalived/keepalived.conf /etc/keepalived/
+cp /usr/local/src/keepalived-1.4.2/keepalived/etc/sysconfig/keepalived /etc/sysconfig/
+cp /usr/local/keepalived/sbin/keepalived /usr/sbin/
+&lt;span class="c1"&gt;#6修改配置文件&lt;/span&gt;
+vim /etc/keepalived/keepalived.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#修改内容如下&lt;/span&gt;
+!Configuration File &lt;span class="k"&gt;for&lt;/span&gt; keepalived
+global_defs &lt;span class="o"&gt;{&lt;/span&gt;
+    notification_email &lt;span class="o"&gt;{&lt;/span&gt;
+        xlcocoon@foxmail.com
+    &lt;span class="o"&gt;}&lt;/span&gt;
+    notification_email_from keepalived@showjoy.com
+    smtp_server &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1
+    smtp_connect_timeout &lt;span class="m"&gt;30&lt;/span&gt;
+    router_id LVS_DEVEL
+    vrrp_skip_check_adv_addr
+    vrrp_garp_interval &lt;span class="m"&gt;0&lt;/span&gt;
+    vrrp_gna_interval &lt;span class="m"&gt;0&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+vrrp_instance VI_1 &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;#主机配MASTER，备机配BACKUP,这个是主机，所以是master&lt;/span&gt;
+    state MASTER
+    &lt;span class="c1"&gt;#所在机器网卡&lt;/span&gt;
+    interface ens33
+    virtual_router_id &lt;span class="m"&gt;51&lt;/span&gt;
+    &lt;span class="c1"&gt;#数值越大优先级越高&lt;/span&gt;
+    priority &lt;span class="m"&gt;100&lt;/span&gt;
+    advert_int &lt;span class="m"&gt;1&lt;/span&gt;
+    authentication &lt;span class="o"&gt;{&lt;/span&gt;
+        auth_type PASS
+        auth_pass &lt;span class="m"&gt;1111&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+    virtual_ipaddress &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;#虚拟IP&lt;/span&gt;
+        &lt;span class="m"&gt;192&lt;/span&gt;.168.140.200
+    &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+virtual_server &lt;span class="m"&gt;192&lt;/span&gt;.168.140.200 &lt;span class="m"&gt;48066&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    delay_loop &lt;span class="m"&gt;6&lt;/span&gt;
+    lb_algo rr
+    lb_kind NAT
+    persistence_timeout &lt;span class="m"&gt;50&lt;/span&gt;
+    protocol TCP
+    real_server &lt;span class="m"&gt;192&lt;/span&gt;.168.2.2 &lt;span class="m"&gt;48066&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        weight &lt;span class="m"&gt;1&lt;/span&gt;
+        TCP_CHECK &lt;span class="o"&gt;{&lt;/span&gt;
+            connect_timeout &lt;span class="m"&gt;3&lt;/span&gt;
+            retry &lt;span class="m"&gt;3&lt;/span&gt;
+            delay_before_retry &lt;span class="m"&gt;3&lt;/span&gt;
+         &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+real_server &lt;span class="m"&gt;192&lt;/span&gt;.168.2.3 &lt;span class="m"&gt;48600&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    weight &lt;span class="m"&gt;1&lt;/span&gt;
+    TCP_CHECK &lt;span class="o"&gt;{&lt;/span&gt;
+        connect_timeout &lt;span class="m"&gt;3&lt;/span&gt;
+        nb_get_retry &lt;span class="m"&gt;3&lt;/span&gt;
+        delay_before_retry &lt;span class="m"&gt;3&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;  
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#1启动Keepalived
+service keepalived start
+#2登录验证
+mysql -umycat -p123456 -h 192.168.140.200 -P 48066&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;测试：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#1关闭mycat
+#2通过虚拟ip查询数据
+mysql -umycat -p123456 -h 192.168.140.200 -P 48066&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;权限控制&lt;/h3&gt;
+&lt;p&gt;1、 user 标签权限控制&lt;/p&gt;
+&lt;p&gt;目前 Mycat 对于中间件的连接控制并没有做太复杂的控制，目前只做了中间件逻辑库级别的读
+写权限控制。是通过 server.xml 的 user 标签进行配置。&lt;/p&gt;
+&lt;p&gt;如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;user name="mycat"&amp;gt;
+    &amp;lt;property name="password"&amp;gt;123456&amp;lt;/property&amp;gt;
+    &amp;lt;property name="schemas"&amp;gt;TESTDB&amp;lt;/property&amp;gt;
+&amp;lt;/user&amp;gt;
+&amp;lt;user name="user"&amp;gt;
+    &amp;lt;property name="password"&amp;gt;user&amp;lt;/property&amp;gt;
+    &amp;lt;property name="schemas"&amp;gt;TESTDB&amp;lt;/property&amp;gt;
+    &amp;lt;property name="readOnly"&amp;gt;true&amp;lt;/property&amp;gt;
+&amp;lt;/user&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;配置说明&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;
+&lt;th&gt;标签属性&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td&gt;应用连接中间件逻辑库的用户名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;password&lt;/td&gt;
+&lt;td&gt;该用户对应的密码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TESTDB&lt;/td&gt;
+&lt;td&gt;应用当前连接的逻辑库中所对应的逻辑表。 schemas 中可以配置一个或多个&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;readOnly&lt;/td&gt;
+&lt;td&gt;应用连接中间件逻辑库所具有的权限。 true 为只读， false 为读写都有，默认为 false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;2、 privileges 标签权限控制&lt;/p&gt;
+&lt;p&gt;在 user 标签下的 &lt;strong&gt;privileges&lt;/strong&gt; 标签可以对逻辑库（schema）、表（table）进行精细化的 DML 权限控
+制。privileges 标签下的 &lt;strong&gt;check&lt;/strong&gt; 属性，&lt;u&gt;如为 *true 开启权限检查，为 false 不开启*&lt;/u&gt;，默认为 false。
+由于 Mycat 一个用户的 schemas 属性可配置多个逻辑库（schema） ，所以 privileges 的下级
+节点 schema 节点同样可配置多个，对多库多表进行细粒度的 DML 权限控制。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;user &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mycat&amp;quot;&lt;/span&gt;&amp;gt;
+    &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&amp;gt;123456&amp;lt;/property&amp;gt;
+    &amp;lt;property &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;schemas&amp;quot;&lt;/span&gt;&amp;gt;TESTDB&amp;lt;/property&amp;gt;
+    &amp;lt;!-- 表级 DML 权限设置 --&amp;gt;
+    &amp;lt;privileges &lt;span class="nv"&gt;check&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;schema &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;TESTDB&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dml&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1111&amp;quot;&lt;/span&gt; &amp;gt;
+              &amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;orders&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dml&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0000&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;/table&amp;gt;
+              &amp;lt;!--&amp;lt;table &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tb02&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dml&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1111&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;/table&amp;gt;--&amp;gt;
+        &amp;lt;/schema&amp;gt;
+    &amp;lt;/privileges&amp;gt;
+&amp;lt;/user&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;配置说明&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;
+&lt;th&gt;DML 权限&lt;/th&gt;
+&lt;th&gt;增加（insert）&lt;/th&gt;
+&lt;th&gt;更新（update）&lt;/th&gt;
+&lt;th&gt;查询（select）&lt;/th&gt;
+&lt;th&gt;删除（select）&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0000&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0010&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;td&gt;可以&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1110&lt;/td&gt;
+&lt;td&gt;可以&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;td&gt;禁止&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1111&lt;/td&gt;
+&lt;td&gt;可以&lt;/td&gt;
+&lt;td&gt;可以&lt;/td&gt;
+&lt;td&gt;可以&lt;/td&gt;
+&lt;td&gt;可以&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;SQL 拦截&lt;/h3&gt;
+&lt;p&gt;firewall 标签用来定义防火墙； firewall 下 whitehost 标签用来定义 IP 白名单 ， blacklist 用来定义
+SQL 黑名单。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;白名单:可以通过设置白名单， 实现某主机某用户可以访问 ,Mycat而其他主机用户禁止访问。&lt;/li&gt;
+&lt;li&gt;黑名单:可以通过设置黑名单， 实现 Mycat 对具体 SQL 操作的拦截， 如增删改查等操作的拦截 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#设置白名单&lt;/span&gt;
+&lt;span class="c1"&gt;#server.xml配置文件firewall标签&lt;/span&gt;
+&lt;span class="c1"&gt;#配置只有192.168.140.128主机可以通过mycat用户访问&lt;/span&gt;
+&amp;lt;firewall&amp;gt;
+    &amp;lt;whitehost&amp;gt;
+         &amp;lt;host &lt;span class="nv"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;192.168.140.128&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mycat&amp;quot;&lt;/span&gt;/&amp;gt;
+    &amp;lt;/whitehost&amp;gt;
+&amp;lt;/firewall&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;结果：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用mycat用户访问可以正常访问，主机换user用户访问，禁止访问&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#设置黑名单
+#server.xml配置文件firewall标签
+#配置禁止mycat用户进行删除操作
+&amp;lt;firewall&amp;gt;
+  &amp;lt;whitehost&amp;gt;
+         &amp;lt;host host="192.168.2.2" user="mycat"/&amp;gt;
+  &amp;lt;/whitehost&amp;gt;
+  &amp;lt;blacklist check="true"&amp;gt;
+         &amp;lt;property name="deleteAllow"&amp;gt;false&amp;lt;/property&amp;gt;
+  &amp;lt;/blacklist&amp;gt;
+&amp;lt;/firewall&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;拦截功能列表&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;
+&lt;th&gt;配置项&lt;/th&gt;
+&lt;th&gt;缺省值&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;selelctAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许执行 SELECT 语句&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;deleteAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许执行 DELETE 语句&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;updateAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许执行 UPDATE 语句&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;insertAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许执行 INSERT 语句&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;createTableAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许创建表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;setAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许使用 SET 语法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;alterTableAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许执行 Alter Table 语句&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dropTableAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许修改表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;commitAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许执行 commit 操作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;rollbackAllow&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;是否允许执行 roll back 操作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;Mycat 监控工具&lt;/h3&gt;
+&lt;p&gt;Mycat-web 是 Mycat 可视化运维的管理和监控平台，弥补了 Mycat 在监控上的空白。帮 Mycat 分
+担统计任务和配置管理任务。 Mycat-web 引入了 ZooKeeper 作为配置中心，可以管理多个节点。
+Mycat-web 主要管理和监控 Mycat 的流量、连接、活动线程和内存等，具备 IP 白名单、邮件告警等模
+块，还可以统计 SQL 并分析慢 SQL 和高频 SQL 等。为优化 SQL 提供依据 。&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 100.62189054726367" &gt;&lt;img width="809" height="402" src="/Blog-With-GitHub-Boilerplate/archives/assets/4df508e57071c09dd1be5fec83415e6b.png" /&gt;&lt;figcaption&gt;2020-02-17_204353&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;安装配置：&lt;/p&gt;
+&lt;p&gt;1、 ZooKeeper 安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#1下载安装包http://zookeeper.apache.org/
+
+#2 安装包拷贝到Linux系统/opt目录下，并解压
+tar -zxvf zookeeper-3.4.11.tar.gz
+
+#3 进入ZooKeeper解压后的配置目录（conf） ，复制配置文件并改名
+cp zoo_sample.cfg zoo.cfg
+
+#4 进入ZooKeeper的命令目录（bin） ，运行启动命令
+./zkServer.sh start
+
+#5 ZooKeeper服务端口为2181，查看服务已经启动
+netstat -ant | grep 2181&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2、 Mycat-web 安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#1下载安装包http://www.mycat.io/
+
+#2 安装包拷贝到Linux系统/opt目录下，并解压
+tar -zxvf Mycat-web-1.0-SNAPSHOT-20170102153329-linux.tar.gz
+
+#3 拷贝mycat-web文件夹到/usr/local目录下
+cp -r mycat-web /usr/local
+
+#4 进入mycat-web的目录下运行启动命令
+cd /usr/local/mycat-web/
+./start.sh &amp;amp;
+
+#5 Mycat-web服务端口为8082，查看服务已经启动
+netstat -ant | grep 8082
+
+#6 通过地址访问服务
+http://192.168.140.127:8082/mycat/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;3、 Mycat-web 配置&lt;/p&gt;
+&lt;p&gt;1 先在注册中心配置ZooKeeper地址，配置后刷新页面&lt;/p&gt;
+&lt;p&gt;2 新增Mycat监控实例&lt;/p&gt;
+&lt;p&gt;4.其他功能执行摸索&lt;/p&gt;
+</description><author>hi@imalan.cn (AlanDecode)</author><guid isPermaLink="true">/Blog-With-GitHub-Boilerplate/archives/a-interesting-story/</guid><pubDate>Wed, 11 Dec 2019 16:08:00 +0806</pubDate></item><item><title>Hello World!</title><link>/Blog-With-GitHub-Boilerplate/archives/typography/</link><description>&lt;div class="notice"&gt;这是一篇示例文章，在这里你可以看到常用页面元素的显示效果，同时也是 Markdown 语法的参考文章。保留或者删除本文，开始自己的创作吧！&lt;/div&gt;&lt;h2&gt;L2 Heading&lt;/h2&gt;
 &lt;h3&gt;L3 Heading&lt;/h3&gt;
 &lt;h4&gt;L4 Heading&lt;/h4&gt;
 &lt;h5&gt;L5 Heading&lt;/h5&gt;
