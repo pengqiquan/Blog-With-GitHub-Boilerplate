@@ -5,21 +5,21 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">	
 
 <url>
-    <loc>/HeapStack/about/</loc>
+    <loc>/Blog-With-GitHub-Boilerplate/about/</loc>
     <lastmod>2017-06-28</lastmod>
     <changefreq>always</changefreq>
     <priority>0.8</priority>
 </url>
 
 <url>
-    <loc>/HeapStack/archives/typography/</loc>
+    <loc>/Blog-With-GitHub-Boilerplate/archives/typography/</loc>
     <lastmod>2019-12-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
 
 <url>
-    <loc>/HeapStack/archives/a-interesting-story/</loc>
+    <loc>/Blog-With-GitHub-Boilerplate/archives/a-interesting-story/</loc>
     <lastmod>2019-12-11</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
