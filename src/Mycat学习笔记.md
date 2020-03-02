@@ -1,19 +1,15 @@
-
-
 ---
 layout: post
-title: Mycat学习
-slug: 
-date: 2019-12-17 20:34
+title: A interesting story
+slug: a-interesting-story
+date: 2019-12-11 16:08
 status: publish
-author: xzy
+author: AlanDecode
 categories: 
-  - 默认分类
+  - Daily
 tags: 
-  - 博客
-  - GitHub
-excerpt: Hello World!
-
+  - Travel
+  - Family
 ---
 
 Mycat基于阿里开源的Cobar产品而研发。Mycat 是数据库中间件 。
