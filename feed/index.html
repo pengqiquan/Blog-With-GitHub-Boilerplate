@@ -1,5 +1,145 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog-With-GitHub-Boilerplate/</link><description>只坚持一种正义。我的正义。</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/Blog-With-GitHub-Boilerplate/logo.png</url><title>我的个人博客</title><link>/Blog-With-GitHub-Boilerplate/</link></image><language>zh-CN</language><lastBuildDate>Mon, 02 Mar 2020 02:18:49 +0806</lastBuildDate><pubDate>Mon, 02 Mar 2020 02:18:49 +0806</pubDate><item><title>我的第一篇文章</title><link>/Blog-With-GitHub-Boilerplate/archives/my-first-awesome-post/</link><description>&lt;p&gt;这是我的第一篇文章。文章使用 GitHub 管理，并通过 GitHub Actions 自动构建与发布！&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>我的个人博客</title><link>/Blog-With-GitHub-Boilerplate/</link><description>只坚持一种正义。我的正义。</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/Blog-With-GitHub-Boilerplate/logo.png</url><title>我的个人博客</title><link>/Blog-With-GitHub-Boilerplate/</link></image><language>zh-CN</language><lastBuildDate>Mon, 02 Mar 2020 02:24:30 +0806</lastBuildDate><pubDate>Mon, 02 Mar 2020 02:24:30 +0806</pubDate><item><title>我的第一篇文章</title><link>/Blog-With-GitHub-Boilerplate/archives/my-first-awesome-post/</link><description>&lt;p&gt;这是我的第一篇文章。文章使用 GitHub 管理，并通过 GitHub Actions 自动构建与发布！&lt;/p&gt;
+&lt;h3&gt;系统环境&lt;/h3&gt;
+&lt;p&gt;Centos 7 x64&lt;/p&gt;
+&lt;p&gt;BootStrap JDK**: 1.8.0_191&lt;/p&gt;
+&lt;p&gt;使用Jdk1.8 来编译OpenJdk1.8  (jdk1.7也行)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@centos7_02 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# uname -a&lt;/span&gt;
+Linux centos7_02 &lt;span class="m"&gt;3&lt;/span&gt;.10.0-1062.9.1.el7.x86_64 &lt;span class="c1"&gt;#1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;root@centos7_02 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# java -version&lt;/span&gt;
+openjdk version &lt;span class="s2"&gt;&amp;quot;1.8.0_232&amp;quot;&lt;/span&gt;
+OpenJDK Runtime Environment &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;1&lt;/span&gt;.8.0_232-b09&lt;span class="o"&gt;)&lt;/span&gt;
+OpenJDK &lt;span class="m"&gt;64&lt;/span&gt;-Bit Server VM &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;25&lt;/span&gt;.232-b09, mixed mode&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;准备条件&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;OpenJdk 8 的源码:openjdk-8u41-src-b04-14_jan_2020&lt;/li&gt;
+&lt;li&gt;ccache-3.2.4.tar.gz 的安装包&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;编译前的准备&lt;/h3&gt;
+&lt;p&gt;开始前，先升级一下：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo yum update&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo yum upgrade&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;1.安装源码仓库管理工具mercurial (可选，若是采用浏览器下载源码包再上传到服务器，则可以不安装)&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;查看可以安装的包：&lt;code&gt;yum –y list mercurial&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装：&lt;code&gt;yum install mercurial&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;查看安装的hg版本：&lt;code&gt;hg --d'dversion&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;查看已安装的 &lt;code&gt;mercurial: yum –y installed | grep mercurial&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;安装完成后，使用&lt;code&gt;hg --version&lt;/code&gt;看是否成功安装&lt;/p&gt;
+&lt;h4&gt;2 安装相关依赖&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;yum -y install zlib zlib-devel
+
+ yum -y install bzip2 bzip2-devel
+
+ yum -y install ncurses ncurses-devel
+
+ yum -y install readline readline-devel
+
+ yum -y install openssl openssl-devel
+
+ yum -y install openssl-static
+
+ yum -y install xz lzma xz-devel
+
+ yum -y install sqlite sqlite-devel
+
+ yum -y install gdbm gdbm-devel
+
+ yum -y install bzip2 bzip2-devel
+
+ yum -y install ncurses ncurses-devel
+
+ yum -y install readline readline-devel
+
+ yum -y install openssl openssl-devel
+
+ yum -y install openssl-static
+
+ yum -y install xz lzma xz-devel
+
+ yum -y install sqlite sqlite-devel
+
+ yum -y install gdbm gdbm-devel
+
+ yum -y install tk tk-devel
+
+ yum -y install libffi-devel 
+
+ yum groupinstall "Development Tools" 
+
+ yum install libXtst-devel libXt-devel libXrender-devel
+
+yum install cups-devel
+
+sudo yum install cups-devel
+
+sudo yum install alsa-lib-devel
+
+yum install alsa-lib-devel cups-devel libX* gcc gcc-c++ freetype-devel libstdc++-static ant make&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;2.1 安装JDK1.8(若有，则无需安装)&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.8.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;openjdk&lt;/span&gt;  &lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.8.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;openjdk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt;
+&lt;span class="n"&gt;或者安装jdk1&lt;/span&gt;&lt;span class="mf"&gt;.7&lt;/span&gt;&lt;span class="n"&gt;也行&lt;/span&gt;
+&lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.7.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;openjdk&lt;/span&gt;  &lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.7.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;openjdk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看版本：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@centos7_02 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# java -version&lt;/span&gt;
+openjdk version &lt;span class="s2"&gt;&amp;quot;1.8.0_242&amp;quot;&lt;/span&gt;
+OpenJDK Runtime Environment &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;1&lt;/span&gt;.8.0_242-b08&lt;span class="o"&gt;)&lt;/span&gt;
+OpenJDK &lt;span class="m"&gt;64&lt;/span&gt;-Bit Server VM &lt;span class="o"&gt;(&lt;/span&gt;build &lt;span class="m"&gt;25&lt;/span&gt;.242-b08, mixed mode&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;2.2 安装ccache&lt;/h5&gt;
+&lt;p&gt;ccache不能用yum形式安装，所以，使用源码包来编译安装。建议使用&lt;strong&gt;root&lt;/strong&gt;用户来完成，否则会有权限问题。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt
+wget http://samba.org/ftp/ccache/ccache-3.2.4.tar.gz
+tar -zxf ccache-3.2.4.tar.gz
+mkdir /usr/local/ccache-3.2.4/
+&lt;span class="nb"&gt;cd&lt;/span&gt; /usr/local/ccache-3.2.4/
+/opt/ccache-3.2.4/configure -prefix&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/ccache-3.2.4
+make -j8
+make install
+&lt;span class="nb"&gt;cd&lt;/span&gt; /usr/bin
+mv ccache ccache_bk    &lt;span class="c1"&gt;#移除原有的，防止原来存在ccache而导致问题&lt;/span&gt;
+ln -s /usr/local/ccache-3.2.4/bin/ccache ccache
+ccache --v
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3.下载源码(等待时间比较长)&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir /root/workspace
+&lt;span class="nb"&gt;cd&lt;/span&gt; /root/workspace
+hg clone http://hg.openjdk.java.net/jdk8u/jdk8u openjdk8
+&lt;span class="nb"&gt;cd&lt;/span&gt; openjdk8
+sh get_source.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;如果出现下面的这行提示，表示下载源码的过程中出现了一些意外，重新执行下载的那个命令，直到将源代码下载下来,否则后续会出现各种问题&lt;/strong&gt;&lt;/p&gt;
+&lt;h4&gt;4. 开始编译安装&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /root/workspace/openjdk8
+chmod +x configure 
+./configure 
+make clean &lt;span class="c1"&gt;#（多次编译，清除之前的数据）&lt;/span&gt;
+make
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;5.测试结果&lt;/h4&gt;
+&lt;p&gt;编写java代码&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cd&lt;/span&gt;   &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;workspace&lt;/span&gt;
+&lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;java&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;test.java&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;JvmTest&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;  
+ &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;  
+    &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getProperty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;java.version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;  
+    &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getProperty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;os.name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;  
+    &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getProperty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;java.vendor.url&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;  
+   &lt;span class="p"&gt;}&lt;/span&gt;  
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;不能直接javac来编译java代码，因为系统自带jdk，所以这么用会使用系统的java环境。应该这么用，javac应该使用编译后的javac&lt;/p&gt;
+&lt;p&gt;即是：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;编译后的javac的所在目录&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;javac&lt;/span&gt;    &lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;java&lt;/span&gt;
+&lt;span class="n"&gt;编译后的java的所在目录&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;    &lt;span class="n"&gt;test&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出结果。说明编译成功。&lt;/p&gt;
 </description><author>hi@imalan.cn (&lt;填写你的名字&gt;)</author><guid isPermaLink="true">/Blog-With-GitHub-Boilerplate/archives/my-first-awesome-post/</guid><pubDate>Tue, 17 Dec 2019 20:34:00 +0806</pubDate></item><item><title>Hello World!</title><link>/Blog-With-GitHub-Boilerplate/archives/typography/</link><description>&lt;div class="notice"&gt;这是一篇示例文章，在这里你可以看到常用页面元素的显示效果，同时也是 Markdown 语法的参考文章。保留或者删除本文，开始自己的创作吧！&lt;/div&gt;&lt;h2&gt;L2 Heading&lt;/h2&gt;
 &lt;h3&gt;L3 Heading&lt;/h3&gt;
 &lt;h4&gt;L4 Heading&lt;/h4&gt;

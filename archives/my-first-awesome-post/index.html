@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/Blog-With-GitHub-Boilerplate/a6a0e954f758c13a34b844adf9c8a2f9.json"
+            api: "/Blog-With-GitHub-Boilerplate/52f566614c75e0e143ed35b67b5a5c7e.json"
         }
     </script>
     
@@ -81,6 +81,146 @@
             </span>
             <div class="ga-content_body">
                 <p>这是我的第一篇文章。文章使用 GitHub 管理，并通过 GitHub Actions 自动构建与发布！</p>
+<h3>系统环境</h3>
+<p>Centos 7 x64</p>
+<p>BootStrap JDK**: 1.8.0_191</p>
+<p>使用Jdk1.8 来编译OpenJdk1.8  (jdk1.7也行)</p>
+<div class="highlight"><pre><span></span><span class="o">[</span>root@centos7_02 ~<span class="o">]</span><span class="c1"># uname -a</span>
+Linux centos7_02 <span class="m">3</span>.10.0-1062.9.1.el7.x86_64 <span class="c1">#1 SMP Fri Dec 6 15:49:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span>
+<span class="o">[</span>root@centos7_02 ~<span class="o">]</span><span class="c1"># java -version</span>
+openjdk version <span class="s2">&quot;1.8.0_232&quot;</span>
+OpenJDK Runtime Environment <span class="o">(</span>build <span class="m">1</span>.8.0_232-b09<span class="o">)</span>
+OpenJDK <span class="m">64</span>-Bit Server VM <span class="o">(</span>build <span class="m">25</span>.232-b09, mixed mode<span class="o">)</span>
+</pre></div>
+<h3>准备条件</h3>
+<ol>
+<li>OpenJdk 8 的源码:openjdk-8u41-src-b04-14_jan_2020</li>
+<li>ccache-3.2.4.tar.gz 的安装包</li>
+</ol>
+<h3>编译前的准备</h3>
+<p>开始前，先升级一下：</p>
+<p><code>sudo yum update</code></p>
+<p><code>sudo yum upgrade</code></p>
+<h4>1.安装源码仓库管理工具mercurial (可选，若是采用浏览器下载源码包再上传到服务器，则可以不安装)</h4>
+<ol>
+<li>查看可以安装的包：<code>yum –y list mercurial</code></li>
+<li>安装：<code>yum install mercurial</code></li>
+<li>查看安装的hg版本：<code>hg --d'dversion</code></li>
+<li>查看已安装的 <code>mercurial: yum –y installed | grep mercurial</code></li>
+</ol>
+<p>安装完成后，使用<code>hg --version</code>看是否成功安装</p>
+<h4>2 安装相关依赖</h4>
+
+<pre><code>yum -y install zlib zlib-devel
+
+ yum -y install bzip2 bzip2-devel
+
+ yum -y install ncurses ncurses-devel
+
+ yum -y install readline readline-devel
+
+ yum -y install openssl openssl-devel
+
+ yum -y install openssl-static
+
+ yum -y install xz lzma xz-devel
+
+ yum -y install sqlite sqlite-devel
+
+ yum -y install gdbm gdbm-devel
+
+ yum -y install bzip2 bzip2-devel
+
+ yum -y install ncurses ncurses-devel
+
+ yum -y install readline readline-devel
+
+ yum -y install openssl openssl-devel
+
+ yum -y install openssl-static
+
+ yum -y install xz lzma xz-devel
+
+ yum -y install sqlite sqlite-devel
+
+ yum -y install gdbm gdbm-devel
+
+ yum -y install tk tk-devel
+
+ yum -y install libffi-devel 
+
+ yum groupinstall "Development Tools" 
+
+ yum install libXtst-devel libXt-devel libXrender-devel
+
+yum install cups-devel
+
+sudo yum install cups-devel
+
+sudo yum install alsa-lib-devel
+
+yum install alsa-lib-devel cups-devel libX* gcc gcc-c++ freetype-devel libstdc++-static ant make</code></pre>
+<h5>2.1 安装JDK1.8(若有，则无需安装)</h5>
+<div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">java</span><span class="o">-</span><span class="mf">1.8.0</span><span class="o">-</span><span class="n">openjdk</span>  <span class="n">java</span><span class="o">-</span><span class="mf">1.8.0</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">devel</span>
+<span class="n">或者安装jdk1</span><span class="mf">.7</span><span class="n">也行</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="n">java</span><span class="o">-</span><span class="mf">1.7.0</span><span class="o">-</span><span class="n">openjdk</span>  <span class="n">java</span><span class="o">-</span><span class="mf">1.7.0</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">devel</span>
+</pre></div>
+<p>查看版本：</p>
+<div class="highlight"><pre><span></span><span class="o">[</span>root@centos7_02 ~<span class="o">]</span><span class="c1"># java -version</span>
+openjdk version <span class="s2">&quot;1.8.0_242&quot;</span>
+OpenJDK Runtime Environment <span class="o">(</span>build <span class="m">1</span>.8.0_242-b08<span class="o">)</span>
+OpenJDK <span class="m">64</span>-Bit Server VM <span class="o">(</span>build <span class="m">25</span>.242-b08, mixed mode<span class="o">)</span>
+</pre></div>
+<h5>2.2 安装ccache</h5>
+<p>ccache不能用yum形式安装，所以，使用源码包来编译安装。建议使用<strong>root</strong>用户来完成，否则会有权限问题。</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> /opt
+wget http://samba.org/ftp/ccache/ccache-3.2.4.tar.gz
+tar -zxf ccache-3.2.4.tar.gz
+mkdir /usr/local/ccache-3.2.4/
+<span class="nb">cd</span> /usr/local/ccache-3.2.4/
+/opt/ccache-3.2.4/configure -prefix<span class="o">=</span>/usr/local/ccache-3.2.4
+make -j8
+make install
+<span class="nb">cd</span> /usr/bin
+mv ccache ccache_bk    <span class="c1">#移除原有的，防止原来存在ccache而导致问题</span>
+ln -s /usr/local/ccache-3.2.4/bin/ccache ccache
+ccache --v
+</pre></div>
+<h4>3.下载源码(等待时间比较长)</h4>
+<div class="highlight"><pre><span></span>mkdir /root/workspace
+<span class="nb">cd</span> /root/workspace
+hg clone http://hg.openjdk.java.net/jdk8u/jdk8u openjdk8
+<span class="nb">cd</span> openjdk8
+sh get_source.sh
+</pre></div>
+<p><strong>如果出现下面的这行提示，表示下载源码的过程中出现了一些意外，重新执行下载的那个命令，直到将源代码下载下来,否则后续会出现各种问题</strong></p>
+<h4>4. 开始编译安装</h4>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> /root/workspace/openjdk8
+chmod +x configure 
+./configure 
+make clean <span class="c1">#（多次编译，清除之前的数据）</span>
+make
+</pre></div>
+<h4>5.测试结果</h4>
+<p>编写java代码</p>
+<div class="highlight"><pre><span></span><span class="n">cd</span>   <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">workspace</span>
+<span class="n">vim</span> <span class="n">test</span><span class="p">.</span><span class="na">java</span>
+</pre></div>
+<p>test.java</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JvmTest</span> <span class="p">{</span>  
+ <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="s">&quot;java.version&quot;</span><span class="p">));</span>  
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="s">&quot;os.name&quot;</span><span class="p">));</span>  
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="s">&quot;java.vendor.url&quot;</span><span class="p">));</span>  
+   <span class="p">}</span>  
+<span class="p">}</span>
+</pre></div>
+<p>不能直接javac来编译java代码，因为系统自带jdk，所以这么用会使用系统的java环境。应该这么用，javac应该使用编译后的javac</p>
+<p>即是：</p>
+<div class="highlight"><pre><span></span><span class="n">编译后的javac的所在目录</span><span class="o">/</span><span class="n">javac</span>    <span class="n">test</span><span class="p">.</span><span class="na">java</span>
+<span class="n">编译后的java的所在目录</span><span class="o">/</span><span class="n">java</span>    <span class="n">test</span>
+</pre></div>
+<p>输出结果。说明编译成功。</p>
 
             </div>
         </article>
