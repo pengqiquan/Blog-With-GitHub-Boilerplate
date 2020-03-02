@@ -2,11 +2,11 @@
 
 ---
 layout: post
-title: Mycat
-slug: my-first-awesome-post
+title: Mycat学习
+slug: 
 date: 2019-12-17 20:34
 status: publish
-author: <填写你的名字>
+author: xzy
 categories: 
   - 默认分类
 tags: 
