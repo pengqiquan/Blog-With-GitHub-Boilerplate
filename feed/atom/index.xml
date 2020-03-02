@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/Blog-With-GitHub-Boilerplate/</id><title>我的个人博客</title><updated>2020-03-02T03:12:36.419399+08:06</updated><author><name>熊猫小A</name><email>hi@imalan.cn</email></author><link href="/Blog-With-GitHub-Boilerplate/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>/Blog-With-GitHub-Boilerplate/logo.png</logo><subtitle>只坚持一种正义。我的正义。</subtitle><entry><id>/Blog-With-GitHub-Boilerplate/archives/a-interesting-story/</id><title>A interesting story</title><updated>2020-03-02T03:12:36.419542+00:00</updated><author><name>AlanDecode</name><email>hi@imalan.cn</email><uri>https://www.imalan.cn</uri></author><content>&lt;p&gt;Mycat基于阿里开源的Cobar产品而研发。Mycat 是数据库中间件 。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/HeapStack/</id><title>星之夜雨</title><updated>2020-03-02T03:20:48.850672+08:06</updated><author><name>xzy</name><email>2207432719@qq.com</email></author><link href="/HeapStack/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>/HeapStack/logo.png</logo><subtitle>只坚持一种正义。我的正义。</subtitle><entry><id>/HeapStack/archives/a-interesting-story/</id><title>A interesting story</title><updated>2020-03-02T03:20:48.850807+00:00</updated><author><name>AlanDecode</name><email>2207432719@qq.com</email><uri>http://www.heapstack.xyz</uri></author><content>&lt;p&gt;Mycat基于阿里开源的Cobar产品而研发。Mycat 是数据库中间件 。&lt;/p&gt;
 &lt;p&gt;下载地址：&lt;a href="http://www.mycat.io/"&gt;http://www.mycat.io/&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;理论&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;什么是中间件&lt;/strong&gt;&lt;/p&gt;
@@ -13,7 +13,7 @@
 &lt;li&gt;读写请求数据不一致&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Mycat架构图&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 89.53900709219859" &gt;&lt;img width="505" height="282" src="/Blog-With-GitHub-Boilerplate/archives/assets/95f41052ab4b85c9a14e26714e9cf0d4.png" /&gt;&lt;figcaption&gt;arc&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 89.53900709219859" &gt;&lt;img width="505" height="282" src="/HeapStack/archives/assets/95f41052ab4b85c9a14e26714e9cf0d4.png" /&gt;&lt;figcaption&gt;arc&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;能干什么&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;读写分离 ：&lt;/p&gt;
@@ -22,13 +22,13 @@
 &lt;li&gt;&lt;p&gt;数据分片 ：垂直拆分（分库） 、 水平拆分（分表） 、 垂直+水平拆分（分库分表）&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;多数据源整合 ：支持各种数据库。&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 89.53900709219859" &gt;&lt;img width="505" height="282" src="/Blog-With-GitHub-Boilerplate/archives/assets/d9d74231c636c7d61d41c2718de2bca7.jpg" /&gt;&lt;figcaption&gt;mycat2&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 89.53900709219859" &gt;&lt;img width="505" height="282" src="/HeapStack/archives/assets/d9d74231c636c7d61d41c2718de2bca7.jpg" /&gt;&lt;figcaption&gt;mycat2&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Mycat 的原理中最重要的一个动词是“&lt;strong&gt;拦截&lt;/strong&gt;”，它拦截了用户发送过来的 SQL 语句，首先对 SQL
 语句做了一些特定的分析：如分片分析、路由分析、读写分离分析、缓存分析等，然后将此 SQL 发往后端的真实数据库， 并将返回的结果做适当的处理，最终再返回给用户。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;figure style="flex: 155.4307116104869" &gt;&lt;img width="830" height="267" src="/Blog-With-GitHub-Boilerplate/archives/assets/ccb5a35154cd88ce9287b882d3de7b26.png" /&gt;&lt;figcaption&gt;2020-02-14_152450&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 155.4307116104869" &gt;&lt;img width="830" height="267" src="/HeapStack/archives/assets/ccb5a35154cd88ce9287b882d3de7b26.png" /&gt;&lt;figcaption&gt;2020-02-14_152450&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h3&gt;安装Mycat&lt;/h3&gt;
 &lt;p&gt;由于Mycat下载的即可使用&lt;/p&gt;
 &lt;p&gt;下载：Mycat-server-1.6.7.1-release-20190627191042-linux.tar.gz 安装包。地址：&lt;a href="http://dl.mycat.io/"&gt;http://dl.mycat.io/&lt;/a&gt;&lt;/p&gt;
@@ -73,7 +73,7 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mysql -uroot -proot -P8066 -h127.0.0.1   &lt;span class="c1"&gt;#启动前需要修改Mycat的配置文件&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;配置图：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 90.45226130653266" &gt;&lt;img width="720" height="398" src="/Blog-With-GitHub-Boilerplate/archives/assets/fbe9f58a87ede32c80634e0576e2a603.png" /&gt;&lt;figcaption&gt;table&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 90.45226130653266" &gt;&lt;img width="720" height="398" src="/HeapStack/archives/assets/fbe9f58a87ede32c80634e0576e2a603.png" /&gt;&lt;figcaption&gt;table&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Serverl.xml:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
@@ -348,11 +348,11 @@ SQL 黑名单。 &lt;/li&gt;
 &lt;h3&gt;配置Mycat&lt;/h3&gt;
 &lt;h4&gt;修改配置文件server.xml&lt;/h4&gt;
 &lt;p&gt;修改用户信息，与MySQL区分， 如下：&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 196.45669291338584" &gt;&lt;img width="499" height="127" src="/Blog-With-GitHub-Boilerplate/archives/assets/58eb9cafb063913e43078f4031a5399e.png" /&gt;&lt;figcaption&gt;2020-02-15_171149&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 196.45669291338584" &gt;&lt;img width="499" height="127" src="/HeapStack/archives/assets/58eb9cafb063913e43078f4031a5399e.png" /&gt;&lt;figcaption&gt;2020-02-15_171149&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h4&gt;修改配置文件 schema.xml&lt;/h4&gt;
 &lt;p&gt;删除&lt;schema&gt;标签间的表信息， &lt;dataNode&gt;标签只留一个， &lt;dataHost&gt;标签只留一个， &lt;writeHost&gt;&lt;/p&gt;
 &lt;p&gt;&lt;readHost&gt;只留一对&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 161.91860465116278" &gt;&lt;img width="1114" height="344" src="/Blog-With-GitHub-Boilerplate/archives/assets/acc3638cd9408e16fc51bbe1f31de157.png" /&gt;&lt;figcaption&gt;2020-02-15_172620&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 161.91860465116278" &gt;&lt;img width="1114" height="344" src="/HeapStack/archives/assets/acc3638cd9408e16fc51bbe1f31de157.png" /&gt;&lt;figcaption&gt;2020-02-15_172620&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h4&gt;测试是否能连接&lt;/h4&gt;
 &lt;p&gt;测试前，先开启Mysql的远程访问权限和关闭防火墙（或者放行3306端口）。然后测试本机是否能够通过远程方式连接本机。&lt;/p&gt;
 &lt;p&gt;主机1：192.168.2.2&lt;/p&gt;
@@ -377,11 +377,11 @@ SQL 黑名单。 &lt;/li&gt;
 &lt;h4&gt;搭建一主一从&lt;/h4&gt;
 &lt;p&gt;一个主机用于处理所有写请求，一台从机负责所有读请求，&lt;/p&gt;
 &lt;p&gt;架构:&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 89.94638069705094" &gt;&lt;img width="671" height="373" src="/Blog-With-GitHub-Boilerplate/archives/assets/584ebcc2fb156acb9c1ab80f9597a1d2.png" /&gt;&lt;figcaption&gt;2020-02-15_203717&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 89.94638069705094" &gt;&lt;img width="671" height="373" src="/HeapStack/archives/assets/584ebcc2fb156acb9c1ab80f9597a1d2.png" /&gt;&lt;figcaption&gt;2020-02-15_203717&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;一主一从搭建比较容易。但是需要先搭建主机（192.168.2.2）和 从机（192.168.2.3）之间的主从复制。&lt;/p&gt;
 &lt;h5&gt;主从复制&lt;/h5&gt;
 &lt;p&gt;原理图：&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 106.7524115755627" &gt;&lt;img width="664" height="311" src="/Blog-With-GitHub-Boilerplate/archives/assets/128ce7a3af48f85e5aa35ffe492b6159.png" /&gt;&lt;figcaption&gt;2020-02-15_204254&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 106.7524115755627" &gt;&lt;img width="664" height="311" src="/HeapStack/archives/assets/128ce7a3af48f85e5aa35ffe492b6159.png" /&gt;&lt;figcaption&gt;2020-02-15_204254&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;master&lt;ul&gt;
 &lt;li&gt;binlog dump线程：当主库中有数据更新时，那么主库就会根据按照设置的binlog格式，将此次更新的事件类型写入到主库的binlog文件中，此时主库会创建log dump线程通知slave有数据更新，当I/O线程请求日志内容时，会将此时的binlog名称和当前更新的位置同时传给slave的I/O线程。&lt;/li&gt;
@@ -455,7 +455,7 @@ flush privileges&lt;span class="p"&gt;;&lt;/span&gt;
 server-id=2
 relay-log=mysql-relay&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;如图：&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 111.35458167330677" &gt;&lt;img width="559" height="251" src="/Blog-With-GitHub-Boilerplate/archives/assets/2764877ff2a3b59ea3d87bd3886f40a9.png" /&gt;&lt;figcaption&gt;2020-02-16_155404&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 111.35458167330677" &gt;&lt;img width="559" height="251" src="/HeapStack/archives/assets/2764877ff2a3b59ea3d87bd3886f40a9.png" /&gt;&lt;figcaption&gt;2020-02-16_155404&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;查询&lt;strong&gt;主机&lt;/strong&gt;master的状态：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mysql&amp;gt; show master status&lt;span class="p"&gt;;&lt;/span&gt;
 +------------------+----------+--------------+--------------------------+-------------------+
@@ -484,7 +484,7 @@ MASTER_LOG_FILE='mysql-bin.000002',MASTER_LOG_POS=154;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;查看从服务器状态&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;show slave status\G;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;无报错这成功，如下图：&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 50.39292730844794" &gt;&lt;img width="513" height="509" src="/Blog-With-GitHub-Boilerplate/archives/assets/89ca3d385dacfcb08da8ccb4edf4504f.png" /&gt;&lt;figcaption&gt;2020-02-16_105728&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 50.39292730844794" &gt;&lt;img width="513" height="509" src="/HeapStack/archives/assets/89ca3d385dacfcb08da8ccb4edf4504f.png" /&gt;&lt;figcaption&gt;2020-02-16_105728&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;补充几个命令：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;stop slave;  #停止slave&lt;/code&gt;
 &lt;code&gt;reset master;   #重置master&lt;/code&gt;&lt;/p&gt;
@@ -505,7 +505,7 @@ MASTER_LOG_FILE='mysql-bin.000002',MASTER_LOG_POS=154;&lt;/code&gt;&lt;/pre&gt;
 &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="c1"&gt;------+----------+&lt;/span&gt;
 &lt;span class="o"&gt;#&lt;/span&gt;&lt;span class="err"&gt;多次执行查询语句，都是输出&lt;/span&gt;&lt;span class="n"&gt;centos7&lt;/span&gt;&lt;span class="err"&gt;，读请求都发送到写主机上。未开启读写分离。&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;figure style="flex: 128.89447236180905" &gt;&lt;img width="513" height="199" src="/Blog-With-GitHub-Boilerplate/archives/assets/673526f139ac11658db80d4eaa352eca.png" /&gt;&lt;figcaption&gt;2020-02-16_160426&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 128.89447236180905" &gt;&lt;img width="513" height="199" src="/HeapStack/archives/assets/673526f139ac11658db80d4eaa352eca.png" /&gt;&lt;figcaption&gt;2020-02-16_160426&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h4&gt;开启读写分离&lt;/h4&gt;
 &lt;p&gt;修改schema.xml 的&lt;dataHost&gt;的balance属性，通过此属性配置读写分离的类型&lt;/p&gt;
 &lt;p&gt;负载均衡类型，目前的取值有4 种：
@@ -516,10 +516,10 @@ MASTER_LOG_FILE='mysql-bin.000002',MASTER_LOG_POS=154;&lt;/code&gt;&lt;/pre&gt;
 （4） balance="3"，所有读请求随机的分发到 readhost 执行， writerHost 不负担读压力&lt;/p&gt;
 &lt;p&gt;修改balance值为1，开启读写分离。但是由于只有一个主机和从机。这个结果会和balance=3的结果一样，所以本次修改为2，这样可以看到不一样的结果。修改完成后重启Mycat。&lt;/p&gt;
 &lt;p&gt;效果如下：&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 45.021186440677965" &gt;&lt;img width="425" height="472" src="/Blog-With-GitHub-Boilerplate/archives/assets/f2e182723ebf661886b97ac437675c6a.png" /&gt;&lt;figcaption&gt;2020-02-16_161327&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 45.021186440677965" &gt;&lt;img width="425" height="472" src="/HeapStack/archives/assets/f2e182723ebf661886b97ac437675c6a.png" /&gt;&lt;figcaption&gt;2020-02-16_161327&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h4&gt;搭建双主双从&lt;/h4&gt;
 &lt;p&gt;结果图：&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 117.40331491712708" &gt;&lt;img width="850" height="362" src="/Blog-With-GitHub-Boilerplate/archives/assets/664563e8837ce1b0eb1e6264b076bd2d.png" /&gt;&lt;figcaption&gt;2020-02-16_161600&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 117.40331491712708" &gt;&lt;img width="850" height="362" src="/HeapStack/archives/assets/664563e8837ce1b0eb1e6264b076bd2d.png" /&gt;&lt;figcaption&gt;2020-02-16_161600&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;双主双从：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;主1：192.168.2.2&lt;/p&gt;
 &lt;p&gt;从1：192.168.2.3&lt;/p&gt;
@@ -769,13 +769,13 @@ PRIMARY KEY(id)
 &lt;p&gt;相对于垂直拆分，水平拆分不是将表做分类，而是按照某个字段的&lt;strong&gt;某种规则&lt;/strong&gt;来&lt;strong&gt;分散&lt;/strong&gt;到多个库之中，
 每个表中 包含一部分数据。简单来说，我们可以&lt;u&gt;将数据的水平切分理解为是按照数据行的切分，就&lt;/u&gt;
 &lt;u&gt;是将表中的某些行切分 到一个数据库，而另外的某些行又切分到其他的数据库中&lt;/u&gt;，。&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 30.4421768707483" &gt;&lt;img width="358" height="588" src="/Blog-With-GitHub-Boilerplate/archives/assets/e3bd9c403c6b223872f7683b62a02de1.png" /&gt;&lt;figcaption&gt;2020-02-17_144112&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 30.4421768707483" &gt;&lt;img width="358" height="588" src="/HeapStack/archives/assets/e3bd9c403c6b223872f7683b62a02de1.png" /&gt;&lt;figcaption&gt;2020-02-17_144112&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;分辨规则要根据具体业务，从而具体确定。&lt;/p&gt;
 &lt;h4&gt;修改配置文件 schema.xml&lt;/h4&gt;
 &lt;p&gt;为 orders 表设置数据节点为 dn1、 dn2， 并指定分片规则为 mod_rule（自定义的名字）&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;table name="orders" dataNode="dn1,dn2" rule="mod_rule" &amp;gt;&amp;lt;/table&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;figure style="flex: 423.29545454545456" &gt;&lt;img width="745" height="88" src="/Blog-With-GitHub-Boilerplate/archives/assets/f86d050dea1e070fd422fa1df9ae1b00.png" /&gt;&lt;figcaption&gt;2020-02-17_150252&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 423.29545454545456" &gt;&lt;img width="745" height="88" src="/HeapStack/archives/assets/f86d050dea1e070fd422fa1df9ae1b00.png" /&gt;&lt;figcaption&gt;2020-02-17_150252&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h4&gt;修改配置文件 rule.xml&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;#在 rule 配置文件里新增分片规则 mod_rule，并指定规则适用字段为 customer_id，
@@ -793,7 +793,7 @@ PRIMARY KEY(id)
       &amp;lt;property name="count"&amp;gt;2&amp;lt;/property&amp;gt;
 &amp;lt;/function&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;如图：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 131.7829457364341" &gt;&lt;img width="680" height="258" src="/Blog-With-GitHub-Boilerplate/archives/assets/c421a4263bf2a0a23569cee35a788454.png" /&gt;&lt;figcaption&gt;2020-02-17_150759&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 131.7829457364341" &gt;&lt;img width="680" height="258" src="/HeapStack/archives/assets/c421a4263bf2a0a23569cee35a788454.png" /&gt;&lt;figcaption&gt;2020-02-17_150759&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;由于之前主机二（192.168.2.3）没有order表，所以需要先手动创建表该表。&lt;/p&gt;
 &lt;p&gt;然后启动Mycat使其生效。&lt;/p&gt;
 &lt;h4&gt;测试效果&lt;/h4&gt;
@@ -809,9 +809,9 @@ INSERT INTO orders(id,order_type,customer_id,amount) VALUES(6,102,100,100020);&l
 &lt;h4&gt;分表引出问题：&lt;/h4&gt;
 &lt;h5&gt;问题一：数据分表存储，那么查询整体数据时，是如何？&lt;/h5&gt;
 &lt;p&gt;结果图：&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 165.5737704918033" &gt;&lt;img width="808" height="244" src="/Blog-With-GitHub-Boilerplate/archives/assets/53a564282a428e162866e564525c2678.png" /&gt;&lt;figcaption&gt;2020-02-17_152041&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 165.5737704918033" &gt;&lt;img width="808" height="244" src="/HeapStack/archives/assets/53a564282a428e162866e564525c2678.png" /&gt;&lt;figcaption&gt;2020-02-17_152041&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;数据查询结果：&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 216.8421052631579" &gt;&lt;img width="824" height="190" src="/Blog-With-GitHub-Boilerplate/archives/assets/e4a39775af42b682f1226b6e07e81010.png" /&gt;&lt;figcaption&gt;2020-02-17_152235&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 216.8421052631579" &gt;&lt;img width="824" height="190" src="/HeapStack/archives/assets/e4a39775af42b682f1226b6e07e81010.png" /&gt;&lt;figcaption&gt;2020-02-17_152235&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;分析：如上面所看到，主机一存储为1，2，3，主机二存储为3，4，5，查询出为整体为1，2，6，3，4，5、即是查询的结果为Mycat合并后的结果。&lt;/p&gt;
 &lt;h5&gt;问题二：分表后，若实现和某些紧密的表的join操作，效率和性能问题如何解决？&lt;/h5&gt;
 &lt;p&gt;Mycat 借鉴了 NewSQL 领域的新秀 Foundation DB 的设计思路， Foundation DB 创新性的提
@@ -1168,8 +1168,8 @@ ID 示例： 56763083475511&lt;/p&gt;
 &lt;p&gt;我们可以使用 HAProxy + Keepalived 配合两台 Mycat 搭起 Mycat 集群，实现高可用性。 HAProxy
 实现了 MyCat 多节点的集群高可用和负载均衡， 而 HAProxy 自身的高可用则可以通过 Keepalived 来
 实现。&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 91.28878281622912" &gt;&lt;img width="765" height="419" src="/Blog-With-GitHub-Boilerplate/archives/assets/71aed405e2bfc620bf6a44dbf547cb44.png" /&gt;&lt;figcaption&gt;2020-02-17_200311&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 89.53900709219859" &gt;&lt;img width="505" height="282" src="/Blog-With-GitHub-Boilerplate/archives/assets/f1100745feb9ebb7c974a3142132600b.png" /&gt;&lt;figcaption&gt;use3&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 91.28878281622912" &gt;&lt;img width="765" height="419" src="/HeapStack/archives/assets/71aed405e2bfc620bf6a44dbf547cb44.png" /&gt;&lt;figcaption&gt;2020-02-17_200311&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 89.53900709219859" &gt;&lt;img width="505" height="282" src="/HeapStack/archives/assets/f1100745feb9ebb7c974a3142132600b.png" /&gt;&lt;figcaption&gt;use3&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h4&gt;安装配置 HAProxy&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#1准备好HAProxy安装包，传到/opt目录下&lt;/span&gt;
 
@@ -1245,7 +1245,7 @@ frontend admin_stats
 &lt;/ol&gt;
 &lt;p&gt;&lt;code&gt;http://192.168.140.125:7777/admin&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;在弹出框输入用户名： admin密码： 123123&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 375.78125" &gt;&lt;img width="962" height="128" src="/Blog-With-GitHub-Boilerplate/archives/assets/e9a9cdb464514a57fe674666c9dbf861.png" /&gt;&lt;figcaption&gt;2020-02-17_202031&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 375.78125" &gt;&lt;img width="962" height="128" src="/HeapStack/archives/assets/e9a9cdb464514a57fe674666c9dbf861.png" /&gt;&lt;figcaption&gt;2020-02-17_202031&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;验证负载均衡，通过HAProxy访问Mycat&lt;/li&gt;
 &lt;/ol&gt;
@@ -1534,7 +1534,7 @@ SQL 黑名单。&lt;/p&gt;
 担统计任务和配置管理任务。 Mycat-web 引入了 ZooKeeper 作为配置中心，可以管理多个节点。
 Mycat-web 主要管理和监控 Mycat 的流量、连接、活动线程和内存等，具备 IP 白名单、邮件告警等模
 块，还可以统计 SQL 并分析慢 SQL 和高频 SQL 等。为优化 SQL 提供依据 。&lt;/p&gt;
-&lt;p&gt;&lt;figure style="flex: 100.62189054726367" &gt;&lt;img width="809" height="402" src="/Blog-With-GitHub-Boilerplate/archives/assets/4df508e57071c09dd1be5fec83415e6b.png" /&gt;&lt;figcaption&gt;2020-02-17_204353&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 100.62189054726367" &gt;&lt;img width="809" height="402" src="/HeapStack/archives/assets/4df508e57071c09dd1be5fec83415e6b.png" /&gt;&lt;figcaption&gt;2020-02-17_204353&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;安装配置：&lt;/p&gt;
 &lt;p&gt;1、 ZooKeeper 安装&lt;/p&gt;
 
@@ -1574,7 +1574,7 @@ http://192.168.140.127:8082/mycat/&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;1 先在注册中心配置ZooKeeper地址，配置后刷新页面&lt;/p&gt;
 &lt;p&gt;2 新增Mycat监控实例&lt;/p&gt;
 &lt;p&gt;4.其他功能执行摸索&lt;/p&gt;
-</content><link href="/Blog-With-GitHub-Boilerplate/archives/a-interesting-story/" rel="alternate"/><published>2019-12-11T16:08:00+08:06</published></entry><entry><id>/Blog-With-GitHub-Boilerplate/archives/typography/</id><title>Hello World!</title><updated>2020-03-02T03:12:36.419474+00:00</updated><author><name>AlanDecode</name><email>hi@imalan.cn</email><uri>https://www.imalan.cn</uri></author><content>&lt;div class="notice"&gt;这是一篇示例文章，在这里你可以看到常用页面元素的显示效果，同时也是 Markdown 语法的参考文章。保留或者删除本文，开始自己的创作吧！&lt;/div&gt;&lt;h2&gt;L2 Heading&lt;/h2&gt;
+</content><link href="/HeapStack/archives/a-interesting-story/" rel="alternate"/><published>2019-12-11T16:08:00+08:06</published></entry><entry><id>/HeapStack/archives/typography/</id><title>Hello World!</title><updated>2020-03-02T03:20:48.850742+00:00</updated><author><name>AlanDecode</name><email>2207432719@qq.com</email><uri>http://www.heapstack.xyz</uri></author><content>&lt;div class="notice"&gt;这是一篇示例文章，在这里你可以看到常用页面元素的显示效果，同时也是 Markdown 语法的参考文章。保留或者删除本文，开始自己的创作吧！&lt;/div&gt;&lt;h2&gt;L2 Heading&lt;/h2&gt;
 &lt;h3&gt;L3 Heading&lt;/h3&gt;
 &lt;h4&gt;L4 Heading&lt;/h4&gt;
 &lt;h5&gt;L5 Heading&lt;/h5&gt;
@@ -1625,15 +1625,15 @@ http://192.168.140.127:8082/mycat/&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;$$C_{m\times k}=A_{m\times n}\cdot B_{n\times k}$$&lt;/p&gt;
 &lt;h2&gt;Figures&lt;/h2&gt;
 &lt;h3&gt;Single figure&lt;/h3&gt;
-&lt;p&gt;&lt;figure style="flex: 92.88888888888889" &gt;&lt;img width="836" height="450" src="/Blog-With-GitHub-Boilerplate/archives/assets/e0affbc80ccb2d596c87b520e37e7071.jpg" /&gt;&lt;figcaption&gt;Princess Mononoke&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure style="flex: 92.88888888888889" &gt;&lt;img width="836" height="450" src="/HeapStack/archives/assets/e0affbc80ccb2d596c87b520e37e7071.jpg" /&gt;&lt;figcaption&gt;Princess Mononoke&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h3&gt;Photoset&lt;/h3&gt;
 &lt;div class="photos"&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/Blog-With-GitHub-Boilerplate/archives/assets/4956a144888cdbbb6c2df1d1d15384b0.jpeg" /&gt;&lt;/figure&gt;
-&lt;figure style="flex: 50.03720238095238" &gt;&lt;img width="2690" height="2688" src="/Blog-With-GitHub-Boilerplate/archives/assets/4c66f0da616b08325b3aaa4c8b3f68e1.jpg" /&gt;&lt;/figure&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/Blog-With-GitHub-Boilerplate/archives/assets/8b4d2334469ffa39b59e6fdb37c8c601.jpeg" /&gt;&lt;/figure&gt;&lt;/div&gt;&lt;div class="photos"&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/Blog-With-GitHub-Boilerplate/archives/assets/0f5023d542a33e7c9d270f3cd6a99562.jpeg" /&gt;&lt;/figure&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/Blog-With-GitHub-Boilerplate/archives/assets/20ec69d2a0276336f95e11f42866d17f.jpeg" /&gt;&lt;/figure&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/Blog-With-GitHub-Boilerplate/archives/assets/2b8af25285e5a193729a350593113bad.jpeg" /&gt;&lt;/figure&gt;&lt;/div&gt;&lt;h2&gt;Table&lt;/h2&gt;
+&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/HeapStack/archives/assets/4956a144888cdbbb6c2df1d1d15384b0.jpeg" /&gt;&lt;/figure&gt;
+&lt;figure style="flex: 50.03720238095238" &gt;&lt;img width="2690" height="2688" src="/HeapStack/archives/assets/4c66f0da616b08325b3aaa4c8b3f68e1.jpg" /&gt;&lt;/figure&gt;
+&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/HeapStack/archives/assets/8b4d2334469ffa39b59e6fdb37c8c601.jpeg" /&gt;&lt;/figure&gt;&lt;/div&gt;&lt;div class="photos"&gt;
+&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/HeapStack/archives/assets/0f5023d542a33e7c9d270f3cd6a99562.jpeg" /&gt;&lt;/figure&gt;
+&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/HeapStack/archives/assets/20ec69d2a0276336f95e11f42866d17f.jpeg" /&gt;&lt;/figure&gt;
+&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/HeapStack/archives/assets/2b8af25285e5a193729a350593113bad.jpeg" /&gt;&lt;/figure&gt;&lt;/div&gt;&lt;h2&gt;Table&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;&lt;tr&gt;
 &lt;th&gt;header&lt;/th&gt;
@@ -1653,4 +1653,4 @@ http://192.168.140.127:8082/mycat/&lt;/code&gt;&lt;/pre&gt;
 &lt;/table&gt;
 &lt;h2&gt;Link Card&lt;/h2&gt;
 &lt;div class="links"&gt;
-&lt;a style="display:block" target="_blank" href="https://www.imalan.cn" class="board-item"&gt;                 &lt;div class="board-thumb"&gt;&lt;img src="https://secure.gravatar.com/avatar/1741a6eef5c824899e347e4afcbaa75d?s=200&amp;r=G&amp;d="&gt;&lt;/div&gt;                 &lt;div class="board-title"&gt;AlanDecode&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;hr&gt;&lt;div class="footnotes"&gt;&lt;ol&gt;&lt;li id="fn_1"&gt;Home page for AlanDecode &lt;a no-style href="#fn_ref_1"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content><link href="/Blog-With-GitHub-Boilerplate/archives/typography/" rel="alternate"/><published>2019-12-18T16:50:00+08:06</published></entry></feed>
+&lt;a style="display:block" target="_blank" href="https://www.imalan.cn" class="board-item"&gt;                 &lt;div class="board-thumb"&gt;&lt;img src="https://secure.gravatar.com/avatar/1741a6eef5c824899e347e4afcbaa75d?s=200&amp;r=G&amp;d="&gt;&lt;/div&gt;                 &lt;div class="board-title"&gt;AlanDecode&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;hr&gt;&lt;div class="footnotes"&gt;&lt;ol&gt;&lt;li id="fn_1"&gt;Home page for AlanDecode &lt;a no-style href="#fn_ref_1"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content><link href="/HeapStack/archives/typography/" rel="alternate"/><published>2019-12-18T16:50:00+08:06</published></entry></feed>
